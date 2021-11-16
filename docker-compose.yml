@@ -4,7 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: python manage.py runserver 0.0.0.0:80 --settings=gidsey.settings.dev
+#    command: python manage.py runserver 0.0.0.0:80 --settings=gidsey.settings.dev
+    command: /bin/sh "utils/run_local.sh"
     volumes:
       - ./:/usr/src/app
     links:
