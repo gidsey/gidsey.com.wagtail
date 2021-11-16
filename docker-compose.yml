@@ -15,7 +15,7 @@ services:
     environment:
       - DEBUG=1
       - ENVIRONMENT=local
-      - DATABASE_URL=postgres://postgres:@postgres:5432/postgres
+      - DATABASE_URL=${DATABASE_URL}
 #      - ELASTICSEARCH_URL=http://elasticsearch:9200
       - SECRET_KEY=${SECRET_KEY}
 #      - BASE_URL=http://localhost
@@ -37,7 +37,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_HOST_AUTH_METHOD=trust
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
 
 #  elasticsearch:
 #    image: elasticsearch:7.9.0
@@ -46,3 +48,7 @@ services:
 #    environment:
 #      - discovery.type=single-node
 #    command: ["elasticsearch", "-Elogger.level=WARN"]
+
+
+volumes:
+  postgres_data:
