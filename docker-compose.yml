@@ -1,0 +1,48 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:80 --settings=gidsey.settings.dev
+    volumes:
+      - ./:/usr/src/app
+    links:
+     - postgres
+#     - elasticsearch
+    ports:
+     - "80:80"
+    environment:
+      - DEBUG=1
+      - ENVIRONMENT=local
+      - DATABASE_URL=postgres://postgres:@postgres:5432/postgres
+#      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - SECRET_KEY=${SECRET_KEY}
+#      - BASE_URL=http://localhost
+#      - EMAIL_HOST=${EMAIL_HOST}
+#      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+#      - EMAIL_HOST_USER=${EMAIL_HOST_USER}
+#      - DEFAULT_FROM_EMAIL=${DEFAULT_FROM_EMAIL}
+#      - AWS_S3_REGION_NAME=${AWS_S3_REGION_NAME}
+#      - AWS_S3_ENDPOINT_URL=${AWS_S3_ENDPOINT_URL}
+#      - AWS_STORAGE_BUCKET_NAME=${AWS_STORAGE_BUCKET_NAME}
+#      - AWS_LOCATION=dev/
+#      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+#      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+#      - SENTRY_URL=${SENTRY_URL}
+#      - SENTRY_SAMPLE_RATE=${SENTRY_SAMPLE_RATE}
+
+  postgres:
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+#  elasticsearch:
+#    image: elasticsearch:7.9.0
+#    ports:
+#      - "9200:9200"
+#    environment:
+#      - discovery.type=single-node
+#    command: ["elasticsearch", "-Elogger.level=WARN"]
