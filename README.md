@@ -1,1 +1,1 @@
-# Gidsey.com
+# gidsey.com.wagtail
