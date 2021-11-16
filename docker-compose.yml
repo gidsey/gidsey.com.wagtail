@@ -13,7 +13,7 @@ services:
     ports:
      - "80:80"
     environment:
-      - DEBUG=1
+      - DEBUG=True
       - ENVIRONMENT=local
       - DATABASE_URL=${DATABASE_URL}
 #      - ELASTICSEARCH_URL=http://elasticsearch:9200
