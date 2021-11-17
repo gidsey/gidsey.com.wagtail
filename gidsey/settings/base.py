@@ -12,8 +12,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 import environ
 from django.core.exceptions import ImproperlyConfigured
+
 ENV_PATH = '/'
 
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'production')
@@ -29,10 +31,8 @@ if ENVIRONMENT == 'local' or ENVIRONMENT == 'test':
 # False if not in os.environ
 DEBUG = env('DEBUG')
 
-
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -66,6 +66,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -103,13 +105,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'gidsey.wsgi.application'
 
-
 # Database
 
 DATABASES = {
     'default': env.db(),
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -129,7 +129,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -142,7 +141,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -167,7 +165,6 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "gidsey"
@@ -182,4 +179,11 @@ WAGTAILSEARCH_BACKENDS = {
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://example.com'
+BASE_URL = 'https://gidsey.com'
+
+# AWS
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME") or ImproperlyConfigured(
+    "AWS_STORAGE_BUCKET_NAME not set")
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID") or ImproperlyConfigured("AWS_ACCESS_KEY_ID not set")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY") or ImproperlyConfigured("AWS_SECRET_ACCESS_KEY not set")
+AWS_S3_CUSTOM_DOMAIN = os.environ.get("AWS_S3_CUSTOM_DOMAIN") or ImproperlyConfigured("AWS_S3_CUSTOM_DOMAIN not set")
