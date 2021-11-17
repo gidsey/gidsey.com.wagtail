@@ -23,7 +23,7 @@ services:
       - AWS_S3_ENDPOINT_URL=${AWS_S3_ENDPOINT_URL}
 
   postgres:
-    image: postgres:14
+    image: postgres:13
     ports:
       - "5432:5432"
     environment:

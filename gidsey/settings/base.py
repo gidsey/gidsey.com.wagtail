@@ -181,7 +181,7 @@ WAGTAILSEARCH_BACKENDS = {
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'https://gidsey.com'
+# BASE_URL = 'https://gidsey.com'
 
 # AWS
 AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME") or ImproperlyConfigured(
@@ -189,8 +189,5 @@ AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME") or Improperl
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID") or ImproperlyConfigured("AWS_ACCESS_KEY_ID not set")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY") or ImproperlyConfigured("AWS_SECRET_ACCESS_KEY not set")
 AWS_S3_ENDPOINT_URL = os.environ.get("AWS_S3_ENDPOINT_URL") or ImproperlyConfigured("AWS_S3_ENDPOINT_URL not set")
+AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME") or ImproperlyConfigured("AWS_S3_REGION_NAME not set")
 
-
-# PUBLIC_MEDIA_LOCATION = 'media'
-# MEDIA_URL = f'https://{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/'
-# DEFAULT_FILE_STORAGE = 'gidsey.storage_backends.PublicMediaStorage'
