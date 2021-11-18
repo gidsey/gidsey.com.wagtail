@@ -10,8 +10,10 @@
             <div class="col-lg-10">
                 <div class="row">
                     <h1 class="mt-5">{{ page.title }}</h1>
-                    {% image page.hero width-2000 as img %}
-                    <img src="{{ img.url }}" class="img-responsive" alt="{{ settings.base.SocialMedia.site_name }}">
+                    {% if  page.hero %}
+                        {% image page.hero width-2000 as img %}
+                        <img src="{{ img.url }}" class="img-responsive" alt="{{ img.alt }}">
+                    {% endif %}
                     {{ page.body|richtext }}
                 </div>
             </div>
