@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'home',
     'base',
+    'blog',
     'search',
 
     'wagtail.contrib.forms',
@@ -157,7 +158,7 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesSto
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = f'{AWS_S3_ENDPOINT_URL}/'
+# MEDIA_ROOT = f'{AWS_S3_ENDPOINT_URL}/'
 MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/'
 
 DEFAULT_FILE_STORAGE = 'gidsey.storage_backends.LocalMediaStorage'

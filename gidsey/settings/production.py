@@ -16,7 +16,7 @@ except Exception as e:
     raise ImproperlyConfigured('CR_HOSTS could not be parsed. {}'.format(e))
 
 
-MEDIA_ROOT = f'{AWS_S3_ENDPOINT_URL}/'
+# MEDIA_ROOT = f'{AWS_S3_ENDPOINT_URL}/'
 MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/'
 
 DEFAULT_FILE_STORAGE = 'gidsey.storage_backends.ProductionMediaStorage'
