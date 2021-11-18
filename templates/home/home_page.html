@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+    <main class="flex-shrink-0">
+        <div class="container">
+            <div class="col-lg-10">
+                <div class="row">
+                    <h1 class="mt-5">{{ page.title }}</h1>
+                    {% image page.hero width-2000 as img %}
+                    <img src="{{ img.url }}" class="img-responsive" alt="{{ settings.base.SocialMedia.site_name }}">
+                    {{ page.body|richtext }}
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

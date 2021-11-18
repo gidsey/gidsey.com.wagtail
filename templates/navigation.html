@@ -1,0 +1,33 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        {% image settings.base.SocialMedia.site_icon width-60 as img %}
+        <a class="navbar-brand" href="{% slugurl 'home' %}">
+            <img src="{{ img.url }}" class="img-30" alt="{{ settings.base.SocialMedia.site_name }}">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% slugurl 'blog' %}">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Collections</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+</nav>
+
