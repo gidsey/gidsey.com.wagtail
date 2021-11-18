@@ -1,0 +1,8 @@
+{% load wagtailimages_tags %}
+<div class="row">
+    <div class="col-lg-9">
+        {% image self.image width-2000 as img %}
+        <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid">
+        <p class="text-muted small">{{ self.image.title }}</p>
+    </div>
+</div>
