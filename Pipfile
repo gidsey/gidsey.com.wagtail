@@ -6,11 +6,11 @@ name = "pypi"
 [packages]
 wagtail = "~=2.15"
 django-environ = "~=0.8.1"
-psycopg2-binary = "==2.9.2"
 whitenoise = "~=5.3.0"
 gunicorn = "~=20.1.0"
 django-storages = "==1.12.3"
 boto3 = "==1.20.7"
+psycopg2-binary = "==2.9.2"
 
 [dev-packages]
 
