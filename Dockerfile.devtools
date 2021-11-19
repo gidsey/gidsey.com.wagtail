@@ -1,0 +1,18 @@
+FROM python:3.9-bullseye
+
+RUN apt-get update -y
+RUN apt-get -y upgrade
+RUN apt-get -y install gnupg2
+RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt bullseye-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+
+RUN apt-get update -y
+RUN apt-get -y install postgresql-13
+
+# Upgrade pip so the prebuilt cryptography package can be installed.
+RUN pip install --upgrade pip
+RUN pip install fabric dj-database-url
+RUN pip install s3cmd
+
+WORKDIR /app
+COPY . .
