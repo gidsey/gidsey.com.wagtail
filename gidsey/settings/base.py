@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'wagtail.admin',
     'wagtail.core',
     'wagtail.contrib.settings',
+    'wagtail.contrib.modeladmin',
 
     'modelcluster',
     'taggit',
@@ -56,6 +57,8 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
 
     'storages',
+    'robots'
+
 
 ]
 
@@ -179,6 +182,8 @@ WAGTAILSEARCH_BACKENDS = {
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = os.getenv('BASE_URL', ImproperlyConfigured('BASE_URL not set'))
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Sentry
 sentry_sdk.init(

@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.conf.urls import url
 from django.contrib import admin
 from django.urls import include, path
 from wagtail.admin import urls as wagtailadmin_urls
@@ -17,6 +18,8 @@ urlpatterns = [
     path('search/', search_views.search, name='search'),
 
     path('sitemap.xml', sitemap),
+
+    url(r'^robots\.txt', include('robots.urls')),
 
 ]
 

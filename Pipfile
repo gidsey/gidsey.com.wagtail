@@ -12,6 +12,7 @@ django-storages = "==1.12.3"
 boto3 = "==1.20.7"
 psycopg2-binary = "==2.9.2"
 sentry-sdk = "*"
+wagtail-robots = "==0.3.1"
 
 [dev-packages]
 
