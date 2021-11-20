@@ -1,4 +1,6 @@
 from .base import *
+import socket
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
@@ -11,6 +13,20 @@ ALLOWED_HOSTS = ['*']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+INSTALLED_APPS = INSTALLED_APPS + [
+    'debug_toolbar',
+]
+
+MIDDLEWARE = MIDDLEWARE + [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+]
+
+# Debug Toolbar
+INTERNAL_IPS = ['127.0.0.1', ]
+
+# tricks to have debug toolbar when developing with docker
+ip = socket.gethostbyname(socket.gethostname())
+INTERNAL_IPS += [ip[:-1] + '1']
 
 try:
     from .local import *

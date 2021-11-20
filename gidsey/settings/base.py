@@ -57,9 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
 
     'storages',
-    'robots'
-
-
+    'robots',
 ]
 
 MIDDLEWARE = [
