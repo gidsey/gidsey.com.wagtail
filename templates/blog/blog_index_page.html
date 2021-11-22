@@ -7,33 +7,29 @@
 {% block content %}
     <main class="flex-shrink-0">
         <div class="container">
-
             <div class="row mb-5">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <h1 class="mt-5 text-uppercase">{{ page.title }}</h1>
                     <div class="intro">{{ page.intro|richtext }}</div>
                 </div>
             </div>
 
-            <div class="row gx-5">
+            <div class="row">
                 {% for post in blogpages %}
-                    <div class="col-lg-6 mb-4">
+                    <div class="col-lg-6 mb-3 ps-3 pe-3">
                         {% with post=post.specific %}
                             <a href="{% pageurl post %}" class="index-link"><h3>{{ post.title }}</h3></a>
 
                             {% with post.hero as hero %}
                                 {% if hero %}
                                     {% image hero fill-800x533 as img %}
-                                    <a href="{% pageurl post %}"><img src="{{ img.url }}" alt="{{ img.alt }}"
-                                                                      class="img-fluid"></a>
-
+                                    <a href="{% pageurl post %}">
+                                        <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid"></a>
                                 {% endif %}
                             {% endwith %}
 
-                            <p>{{ post.intro }}</p>
-
+                            <p class="small">{{ post.intro }}</p>
                         {% endwith %}
-
                     </div>
                 {% endfor %}
 
