@@ -27,6 +27,18 @@ class TitleAndTextBlock(blocks.StructBlock):
         label = 'Title & Text'
 
 
+class SectionHeadBlock(blocks.StructBlock):
+    """
+    Section head.
+    """
+    title = blocks.CharBlock(required=False, help_text='add section title')
+
+    class Meta:
+        template = 'blog/section_head.html'
+        icon = 'edit'
+        label = 'Section head'
+
+
 class ImageBlock(blocks.StructBlock):
     """
     Image and caption.
