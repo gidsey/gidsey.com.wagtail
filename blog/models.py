@@ -52,6 +52,7 @@ class BlogPage(Page):
     content = StreamField(
         [
             ('title_and_text', blocks.TitleAndTextBlock()),
+            ('section_head', blocks.SectionHeadBlock()),
             ('image', blocks.ImageBlock()),
         ],
         null=True,
