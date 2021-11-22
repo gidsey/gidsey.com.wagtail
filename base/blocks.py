@@ -8,7 +8,9 @@ class SimpleRichTextBlock(blocks.RichTextBlock):
         self.features = [
             'bold',
             'italic',
-            'link'
+            'link',
+            'ol',
+            'ul',
         ]
 
 
