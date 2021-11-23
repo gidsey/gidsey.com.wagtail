@@ -1,0 +1,12 @@
+{% load wagtailimages_tags %}
+<div class="row">
+    <div class="col-md-7 image-block-gap">
+        {% image self.left_image max-1200x856 as left %}
+        <img src="{{ left.url }}" alt="{{ left.alt }}" class="img-h-100 mb-3">
+    </div>
+    <div class="col-md-3">
+        {% image self.right_image max-856x1200 as right %}
+        <img src="{{ right.url }}" alt="{{ right.alt }}" class="img-h-100 mb-3">
+    </div>
+    <p class="text-muted small">{{ self.caption }}</p>
+</div>
