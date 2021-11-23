@@ -54,7 +54,9 @@ class BlogPage(Page):
             ('title_and_text', blocks.TitleAndTextBlock()),
             ('section_head', blocks.SectionHeadBlock()),
             ('image', blocks.ImageBlock()),
-            ('two_images', blocks.TwoImageBlock())
+            ('two_images', blocks.TwoImageBlock()),
+            ('two_thirds_one_third', blocks.TwoThirdsOneThird()),
+            ('one_third_two_thirds', blocks.OneThirdTwoThirds()),
         ],
         null=True,
         blank=True

@@ -1,8 +1,8 @@
-from wagtail.core import blocks
+from wagtail.core.blocks import StructBlock, RichTextBlock, CharBlock
 from wagtail.images.blocks import ImageChooserBlock
 
 
-class SimpleRichTextBlock(blocks.RichTextBlock):
+class SimpleRichTextBlock(RichTextBlock):
     def __init__(self, required=True, help_text=None, editor='default', features=None, validators=(), **kwargs):
         super().__init__(**kwargs)
         self.features = [
@@ -14,11 +14,11 @@ class SimpleRichTextBlock(blocks.RichTextBlock):
         ]
 
 
-class TitleAndTextBlock(blocks.StructBlock):
+class TitleAndTextBlock(StructBlock):
     """
     Title and text only.
     """
-    title = blocks.CharBlock(required=False, help_text='add title')
+    title = CharBlock(required=False, help_text='add title')
     text = SimpleRichTextBlock(required=False, help_text='add text')
 
     class Meta:
@@ -27,11 +27,11 @@ class TitleAndTextBlock(blocks.StructBlock):
         label = 'Title & Text'
 
 
-class SectionHeadBlock(blocks.StructBlock):
+class SectionHeadBlock(StructBlock):
     """
     Section head.
     """
-    title = blocks.CharBlock(required=False, help_text='add section title')
+    title = CharBlock(required=False, help_text='add section title')
 
     class Meta:
         template = 'blog/section_head.html'
@@ -39,7 +39,7 @@ class SectionHeadBlock(blocks.StructBlock):
         label = 'Section head'
 
 
-class ImageBlock(blocks.StructBlock):
+class ImageBlock(StructBlock):
     """
     Image and caption.
     """
@@ -51,13 +51,12 @@ class ImageBlock(blocks.StructBlock):
         label = 'Image and caption'
 
 
-class TwoImageBlock(blocks.StructBlock):
+class TwoImageBlock(StructBlock):
     """
     Two images side by side, each with caption.
     """
-
-    left_image = ImageChooserBlock(required=False, help_text='add left-hand image')
-    right_image = ImageChooserBlock(required=False, help_text='add right-hand image')
+    left_image = ImageChooserBlock(required=True, help_text='add left-hand image')
+    right_image = ImageChooserBlock(required=True, help_text='add right-hand image')
 
     class Meta:
         template = 'blog/two_image_block.html'
@@ -65,3 +64,31 @@ class TwoImageBlock(blocks.StructBlock):
         label = 'Two images with captions'
 
 
+class TwoThirdsOneThird(StructBlock):
+    """
+    Two images arranged in a two-thirds / one-third column layout.
+    Bespoke caption field.
+    """
+    left_image = ImageChooserBlock(required=True, help_text='add landscape left-hand image')
+    right_image = ImageChooserBlock(required=True, help_text='add portrait right-hand image')
+    caption = CharBlock(required=False, help_text='add section title')
+
+    class Meta:
+        template = 'blog/two_thirds_one_third_block.html'
+        icon = 'image'
+        label = 'Two images arranged in a two-thirds / one-third layout'
+
+
+class OneThirdTwoThirds(StructBlock):
+    """
+    Two images arranged in a one-third / two-thirds column layout.
+    Bespoke caption field.
+    """
+    left_image = ImageChooserBlock(required=True, help_text='add portrait left-hand image')
+    right_image = ImageChooserBlock(required=True, help_text='add landscape right-hand image')
+    caption = CharBlock(required=False, help_text='add section title')
+
+    class Meta:
+        template = 'blog/one_third_two_thirds_block.html'
+        icon = 'image'
+        label = 'Two images arranged in a one-third / two-thirds layout'
