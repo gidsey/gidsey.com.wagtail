@@ -54,6 +54,7 @@ class BlogPage(Page):
             ('title_and_text', blocks.TitleAndTextBlock()),
             ('section_head', blocks.SectionHeadBlock()),
             ('image', blocks.ImageBlock()),
+            ('two_images', blocks.TwoImageBlock())
         ],
         null=True,
         blank=True

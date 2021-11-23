@@ -49,3 +49,19 @@ class ImageBlock(blocks.StructBlock):
         template = 'blog/image_and_caption_block.html'
         icon = 'image'
         label = 'Image and caption'
+
+
+class TwoImageBlock(blocks.StructBlock):
+    """
+    Two images side by side, each with caption.
+    """
+
+    left_image = ImageChooserBlock(required=False, help_text='add left-hand image')
+    right_image = ImageChooserBlock(required=False, help_text='add right-hand image')
+
+    class Meta:
+        template = 'blog/two_image_block.html'
+        icon = 'image'
+        label = 'Two images with captions'
+
+
