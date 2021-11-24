@@ -86,7 +86,7 @@ class OneThirdTwoThirds(StructBlock):
     """
     left_image = ImageChooserBlock(required=True, help_text='add portrait left-hand image')
     right_image = ImageChooserBlock(required=True, help_text='add landscape right-hand image')
-    caption = CharBlock(required=False, help_text='add section title')
+    caption = CharBlock(required=False, help_text='add a caption')
 
     class Meta:
         template = 'blog/one_third_two_thirds_block.html'
