@@ -2,7 +2,11 @@
 <div class="row">
     <div class="col-md-10">
         {% image self.image width-2000 as img %}
-        <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid">
-        <p class="text-muted small">{{ self.image.title }}</p>
+        {% if not self.hide_caption %}
+            <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid">
+            <p class="text-muted small">{{ self.image.title }}</p>
+        {% else %}
+            <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid mb-2">
+        {% endif %}
     </div>
 </div>
