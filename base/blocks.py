@@ -1,4 +1,4 @@
-from wagtail.core.blocks import StructBlock, RichTextBlock, CharBlock
+from wagtail.core.blocks import StructBlock, RichTextBlock, CharBlock, BooleanBlock
 from wagtail.images.blocks import ImageChooserBlock
 
 
@@ -44,6 +44,7 @@ class ImageBlock(StructBlock):
     Image and caption.
     """
     image = ImageChooserBlock(required=False, help_text='add image')
+    hide_caption = BooleanBlock(required=False, help_text='tick to hide caption')
 
     class Meta:
         template = 'blog/image_and_caption_block.html'
