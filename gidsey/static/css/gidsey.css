@@ -7,16 +7,21 @@ p {
     line-height: 24px;
 }
 
-a {
+a, .page-link {
     color: rgb(33, 37, 41);
     font-weight: 700;
     text-decoration: none;
 }
 
-a:hover {
+a:hover, .page-link:hover {
     color: hotpink;
 }
 
+.page-item.active .page-link {
+    background-color: #7EA1BF;
+    border-color: #7EA1BF;
+    color: #fff;
+}
 
 a.index-link {
     color: rgb(33, 37, 41);

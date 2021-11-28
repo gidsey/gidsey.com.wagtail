@@ -10,7 +10,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
-
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from base import blocks
 
 
@@ -22,8 +22,19 @@ class BlogIndexPage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-        blogpages = self.get_children().live().order_by('-blogpage__date')
-        context['blogpages'] = blogpages
+        all_posts = self.get_children().live().order_by('-blogpage__date')
+
+        paginator = Paginator(all_posts, 12)
+        page = request.GET.get('page')
+
+        try:
+            posts = paginator.page(page)
+        except PageNotAnInteger:
+            posts = paginator.page(1)
+        except EmptyPage:
+            posts = paginator.page(paginator.num_pages)
+
+        context['posts'] = posts
         return context
 
     content_panels = Page.content_panels + [
