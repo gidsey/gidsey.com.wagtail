@@ -7,15 +7,16 @@
 {% block content %}
     <main class="flex-shrink-0">
         <div class="container">
+
             <div class="row mb-5">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <h1 class="mt-5 text-uppercase">{{ page.title }}</h1>
                     <div class="intro">{{ page.intro|richtext }}</div>
                 </div>
             </div>
 
             <div class="row">
-                {% for post in blogpages %}
+                {% for post in posts %}
                     <div class="col-lg-6 mb-3 ps-3 pe-3">
                         {% with post=post.specific %}
                             <a href="{% pageurl post %}" class="index-link"><h3>{{ post.title }}</h3></a>
@@ -32,9 +33,12 @@
                         {% endwith %}
                     </div>
                 {% endfor %}
-
-
             </div>
+
+            <div class="row mb-5">
+                {% include '../pagination.html' %}
+            </div>
+
         </div>
     </main>
 
