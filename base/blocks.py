@@ -59,6 +59,9 @@ class TwoImageBlock(StructBlock):
     """
     left_image = ImageChooserBlock(required=True, help_text='add left-hand image')
     right_image = ImageChooserBlock(required=True, help_text='add right-hand image')
+    left_alt_caption = CharBlock(required=False, help_text='add custom caption for left-hand image (optional)')
+    right_alt_caption = CharBlock(required=False, help_text='add custom caption for right-hand image (optional)')
+    hide_captions = BooleanBlock(required=False, help_text='tick to hide all captions')
 
     class Meta:
         template = 'blog/two_image_block.html'
