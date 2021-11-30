@@ -45,6 +45,7 @@ class ImageBlock(StructBlock):
     """
     image = ImageChooserBlock(required=False, help_text='add image')
     hide_caption = BooleanBlock(required=False, help_text='tick to hide caption')
+    alt_caption = CharBlock(required=False, help_text='add custom caption (optional)')
 
     class Meta:
         template = 'blog/image_and_caption_block.html'
@@ -72,7 +73,7 @@ class TwoThirdsOneThird(StructBlock):
     """
     left_image = ImageChooserBlock(required=True, help_text='add landscape left-hand image')
     right_image = ImageChooserBlock(required=True, help_text='add portrait right-hand image')
-    caption = CharBlock(required=False, help_text='add section title')
+    caption = CharBlock(required=False, help_text='add a caption')
 
     class Meta:
         template = 'blog/two_thirds_one_third_block.html'

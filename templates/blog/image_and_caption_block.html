@@ -4,7 +4,11 @@
         {% image self.image width-2000 as img %}
         {% if not self.hide_caption %}
             <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid">
-            <p class="text-muted small">{{ self.image.title }}</p>
+            {% if self.alt_caption %}
+                <p class="text-muted small">{{ self.alt_caption }}</p>
+            {% else %}
+                <p class="text-muted small">{{ self.image.title }}</p>
+            {% endif %}
         {% else %}
             <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid mb-2">
         {% endif %}
