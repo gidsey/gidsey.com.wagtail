@@ -97,6 +97,13 @@ class BlogPage(Page):
         ImageChooserPanel('hero'),
         MultiFieldPanel(
             [
+                InlinePanel('gallery_info', label='Gallery information', min_num=None, max_num=1),
+                InlinePanel('gallery_images', label='Gallery images'),
+            ],
+            heading="Image Gallery"
+        ),
+        MultiFieldPanel(
+            [
                 InlinePanel('blog_authors', label='Author', min_num=1, max_num=4),
             ],
             heading="Author(s)"
@@ -118,6 +125,15 @@ class BlogPageGalleryImage(Orderable):
         ImageChooserPanel('image'),
         FieldPanel('caption'),
     ]
+
+
+class BlogPageGalleryInfo(Orderable):
+    """
+    Holds the title and description for an in-page image gallery.
+    """
+    gallery_info = ParentalKey(BlogPage, on_delete=models.CASCADE, related_name='gallery_info')
+    gallery_title = models.CharField(max_length=100, null=True, blank=True, verbose_name='Title')
+    gallery_description = models.CharField(max_length=250, null=True, blank=True, verbose_name='Description')
 
 
 class BlogTagIndexPage(Page):
