@@ -33,6 +33,12 @@ a.index-link {
     width: 30px;
 }
 
+.img-h-100 {
+    min-height: 100%;
+    width: 100%;
+}
+
+
 .tags a {
     display: inline-block;
     color: rgb(33, 37, 41);
@@ -46,11 +52,6 @@ a.index-link {
     padding: 0 10px;
 }
 
-
-.img-h-100 {
-    min-height: 100%;
-    width: 100%;
-}
 
 .pink {
     background-color: hotpink;
@@ -66,6 +67,11 @@ a.index-link {
         margin-bottom: 1rem;
     }
 
+    .img-gallery {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 90%;
+    }
 }
 
 /* Medium devices (tablets, less than 992px) */
