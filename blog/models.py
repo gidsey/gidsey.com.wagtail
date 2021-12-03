@@ -14,34 +14,6 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from base import blocks
 
 
-class BlogIndexPage(Page):
-    """
-    Blog listing page.
-    """
-    intro = RichTextField(blank=True)
-
-    def get_context(self, request):
-        context = super().get_context(request)
-        all_posts = self.get_children().live().order_by('-blogpage__date')
-
-        paginator = Paginator(all_posts, 12)
-        page = request.GET.get('page')
-
-        try:
-            posts = paginator.page(page)
-        except PageNotAnInteger:
-            posts = paginator.page(1)
-        except EmptyPage:
-            posts = paginator.page(paginator.num_pages)
-
-        context['posts'] = posts
-        return context
-
-    content_panels = Page.content_panels + [
-        FieldPanel('intro', classname="full")
-    ]
-
-
 class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey(
         'BlogPage',
@@ -136,17 +108,60 @@ class BlogPageGalleryInfo(Orderable):
     gallery_description = models.CharField(max_length=250, null=True, blank=True, verbose_name='Description')
 
 
+class BlogIndexPage(Page):
+    """
+    Blog listing page.
+    """
+
+    template = 'blog/blog_index_page.html'
+    max_count = 1
+
+    intro = RichTextField(blank=True)
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        all_posts = BlogPage.objects.live().public().order_by('-date')
+
+        # print(all_posts)
+
+        # all_posts = all_posts.filter(tags__slug='bristol')
+
+        if request.GET.get('tag', None):
+            tags = request.GET.get('tag')
+            all_posts = all_posts.filter(tags__slug__in=[tags])
+
+        paginator = Paginator(all_posts, 12)
+        page = request.GET.get('page')
+
+        try:
+            posts = paginator.page(page)
+        except PageNotAnInteger:
+            posts = paginator.page(1)
+        except EmptyPage:
+            posts = paginator.page(paginator.num_pages)
+
+        context['posts'] = posts
+        context['num_posts'] = paginator.count
+        return context
+
+    content_panels = Page.content_panels + [
+        FieldPanel('intro', classname="full")
+    ]
+
+
 class BlogTagIndexPage(Page):
     """
     Tag index page.
     """
 
+    max_count = 1
+    
     def get_context(self, request):
         # Filter by tag
         tag = request.GET.get('tag')
-        blogpages = BlogPage.objects.filter(tags__name=tag)
+        posts = BlogPage.objects.filter(tags__name=tag)
         context = super().get_context(request)
-        context['blogpages'] = blogpages
+        context['posts'] = posts
         return context
 
 

@@ -11,7 +11,27 @@
             <div class="row mb-3">
                 <div class="col-lg-6">
                     <h1 class="mt-5 text-uppercase">{{ page.title }}</h1>
+                                    <div class="lead">{{ num_posts }} blogs found</div>
                     <div class="intro">{{ page.intro|richtext }}</div>
+
+
+                {# Check if there are tags #}
+
+
+    {% if page.tags.count %}
+        <h1>Tags:</h1>
+        {% for tag in page.tags.all %}
+            {# Loop through all the existing tags #}
+            <a href="{{ self.get_parent.url }}?tag={{ tag.slug }}">{{ tag }}</a><br />
+        {% endfor %}
+    {% endif %}
+
+
+                    <h6>Tags</h6>
+                    {% for tag in posts.tags.all %}
+                        {{ tag }}
+                    {% endfor %}
+
                 </div>
             </div>
 
