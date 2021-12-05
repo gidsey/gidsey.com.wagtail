@@ -8,32 +8,51 @@
     <main class="flex-shrink-0">
         <div class="container">
 
-            <div class="row mb-3">
-                <div class="col-lg-6">
+            <div class="row mb-0">
+                <div class="col-lg-12">
                     <h1 class="mt-5 text-uppercase">{{ page.title }}</h1>
-                                    <div class="lead">{{ num_posts }} blogs found</div>
-                    <div class="intro">{{ page.intro|richtext }}</div>
+                    <div class="lead">{{ page.intro|richtext }}</div>
+                </div>
+            </div>
 
-
-                {# Check if there are tags #}
-
-
-    {% if page.tags.count %}
-        <h1>Tags:</h1>
+-*-
+        {% if page.tags.all.count %}
+    <div class="tags">
+        <h3>Tags</h3>
         {% for tag in page.tags.all %}
-            {# Loop through all the existing tags #}
-            <a href="{{ self.get_parent.url }}?tag={{ tag.slug }}">{{ tag }}</a><br />
+            <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button type="button">{{ tag }}</button></a>
         {% endfor %}
-    {% endif %}
-
-
-                    <h6>Tags</h6>
-                    {% for tag in posts.tags.all %}
-                        {{ tag }}
-                    {% endfor %}
+    </div>
+{% endif %}
+-*-
+            {# Tags #}
+            <div class="row mb-3">
+                <div class="col-lg-12">
+{#                          --{{ tag }}--#}
+                    {% if all_tags %}
+                        <div class="tags my-3">
+                            <h6>Filter:</h6>
+                            {% for tag in all_tags %}
+                                <a href="{% slugurl 'blog' %}?tag={{ tag.1 }}" class="small">
+                                    {{ tag.0 }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
 
                 </div>
             </div>
+
+            {% if self.categories.count %}
+                <div style="padding: 0 20px 20px">
+                    {% for cat in self.categories.all %}
+                        <a href="?category={{ cat.slug }}">
+                            {{ cat.name }}
+                        </a>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
 
             <div class="row">
                 {% for post in posts %}
