@@ -1,45 +1,22 @@
 from django import forms
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.db import models
+from django.shortcuts import redirect
+from django.shortcuts import render
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from taggit.models import TaggedItemBase
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page, Orderable
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+
 from base import blocks
-
-
-class BlogIndexPage(Page):
-    """
-    Blog listing page.
-    """
-    intro = RichTextField(blank=True)
-
-    def get_context(self, request):
-        context = super().get_context(request)
-        all_posts = self.get_children().live().order_by('-blogpage__date')
-
-        paginator = Paginator(all_posts, 12)
-        page = request.GET.get('page')
-
-        try:
-            posts = paginator.page(page)
-        except PageNotAnInteger:
-            posts = paginator.page(1)
-        except EmptyPage:
-            posts = paginator.page(paginator.num_pages)
-
-        context['posts'] = posts
-        return context
-
-    content_panels = Page.content_panels + [
-        FieldPanel('intro', classname="full")
-    ]
+from .utils import paginate
 
 
 class BlogPageTag(TaggedItemBase):
@@ -111,29 +88,60 @@ class BlogPage(Page):
     ]
 
 
-class BlogPageGalleryImage(Orderable):
+class BlogIndexPage(RoutablePageMixin, Page):
     """
-    Select one or more images for blog pages.
+    Blog listing page.
     """
-    page = ParentalKey(BlogPage, on_delete=models.CASCADE, related_name='gallery_images')
-    image = models.ForeignKey(
-        'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'
-    )
-    caption = models.CharField(blank=True, max_length=250)
 
-    panels = [
-        ImageChooserPanel('image'),
-        FieldPanel('caption'),
+    template = 'blog/blog_index_page.html'
+    max_count = 1
+
+    intro = RichTextField(blank=True)
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+
+        all_posts = BlogPage.objects.live().public().order_by('-date')
+        all_tags = [(tag.lower(), slug) for tag, slug in all_posts.values_list('tags__name', 'tags__slug')]
+        all_tags = sorted(list(set(all_tags)))
+
+        if request.GET.get('tag', None):
+            tag = request.GET.get('tag')
+            context['selected_tag'] = tag
+            all_posts = all_posts.filter(tags__slug__in=[tag])
+
+        posts = paginate(request, all_posts, 12)
+        context['posts'] = posts
+        context["categories"] = BlogCategory.objects.all()
+
+        context['all_tags'] = all_tags
+        context['location'] = self.url
+        return context
+
+    @route(r'^category/(?P<cat_slug>[-\w]*)/$', name="category_view")
+    def category_view(self, request, cat_slug):
+        context = self.get_context(request)
+        try:
+            category = BlogCategory.objects.get(slug=cat_slug)
+        except (ObjectDoesNotExist, MultipleObjectsReturned):
+            return redirect('/blog/')
+
+        all_posts = BlogPage.objects.live().public().order_by('-date').filter(categories__in=[category])
+
+        if request.GET.get('tag', None):
+            tag = request.GET.get('tag')
+            context['selected_tag'] = tag
+            all_posts = all_posts.filter(tags__slug__in=[tag])
+
+        posts = paginate(request, all_posts, 12)
+        context['posts'] = posts
+        context['category'] = category
+        context['location'] = self.url + 'category/' + cat_slug
+        return render(request, 'blog/blog_index_page.html', context)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('intro', classname="full")
     ]
-
-
-class BlogPageGalleryInfo(Orderable):
-    """
-    Holds the title and description for an in-page image gallery.
-    """
-    gallery_info = ParentalKey(BlogPage, on_delete=models.CASCADE, related_name='gallery_info')
-    gallery_title = models.CharField(max_length=100, null=True, blank=True, verbose_name='Title')
-    gallery_description = models.CharField(max_length=250, null=True, blank=True, verbose_name='Description')
 
 
 class BlogTagIndexPage(Page):
@@ -141,33 +149,39 @@ class BlogTagIndexPage(Page):
     Tag index page.
     """
 
-    def get_context(self, request):
+    max_count = 1
+
+    def get_context(self, request, *args, **kwargs):
         # Filter by tag
         tag = request.GET.get('tag')
-        blogpages = BlogPage.objects.filter(tags__name=tag)
+        posts = BlogPage.objects.filter(tags__name=tag)
         context = super().get_context(request)
-        context['blogpages'] = blogpages
+        context['posts'] = posts
         return context
 
 
 @register_snippet
 class BlogCategory(models.Model):
     name = models.CharField(max_length=255)
-    icon = models.ForeignKey(
-        'wagtailimages.Image', null=True, blank=True,
-        on_delete=models.SET_NULL, related_name='+'
+    slug = models.SlugField(
+        verbose_name="slug",
+        allow_unicode=True,
+        max_length=255,
+        help_text='A slug to identify posts by this category',
     )
 
     panels = [
         FieldPanel('name'),
-        ImageChooserPanel('icon'),
+        FieldPanel('slug'),
     ]
+
+    class Meta:
+        verbose_name = "Blog Category"
+        verbose_name_plural = "Blog Categories"
+        ordering = ["-name"]
 
     def __str__(self):
         return self.name
-
-    class Meta:
-        verbose_name_plural = 'blog categories'
 
 
 @register_snippet
@@ -219,3 +233,28 @@ class BlogPageAuthors(Orderable):
     panel = [
         SnippetChooserPanel
     ]
+
+
+class BlogPageGalleryImage(Orderable):
+    """
+    Select one or more images for blog pages.
+    """
+    page = ParentalKey(BlogPage, on_delete=models.CASCADE, related_name='gallery_images')
+    image = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'
+    )
+    caption = models.CharField(blank=True, max_length=250)
+
+    panels = [
+        ImageChooserPanel('image'),
+        FieldPanel('caption'),
+    ]
+
+
+class BlogPageGalleryInfo(Orderable):
+    """
+    Holds the title and description for an in-page image gallery.
+    """
+    gallery_info = ParentalKey(BlogPage, on_delete=models.CASCADE, related_name='gallery_info')
+    gallery_title = models.CharField(max_length=100, null=True, blank=True, verbose_name='Title')
+    gallery_description = models.CharField(max_length=250, null=True, blank=True, verbose_name='Description')

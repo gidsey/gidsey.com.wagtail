@@ -6,6 +6,8 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 
 
 class HomePage(Page):
+    max_count = 1
+
     body = RichTextField(blank=True)
     hero = models.ForeignKey(
         'wagtailimages.Image', null=True, blank=True,

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags %}
 
 {% block body_class %}template-blogpage{% endblock %}
 
@@ -16,14 +16,15 @@
                         {% with categories=page.categories.all %}
                             {% if categories %} in
                                 {% for category in categories %}
-                                    <a href="#">{{ category.name }}</a>
+                                    <a href="{% slugurl 'blog' %}category/{{ category.slug }}"
+                                       class="text-uppercase small">{{ category.name }}</a>{% if not forloop.last %},
+                                {% endif %}
                                 {% endfor %}
                             {% endif %}
                         {% endwith %}
                     </div>
                 </div>
             </div>
-
 
             {# Content #}
             {% for block in page.content %}
