@@ -1,18 +1,21 @@
 from django import forms
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
+from .utils import paginate
 from django.db import models
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from taggit.models import TaggedItemBase
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page, Orderable
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
-from wagtail.contrib.routable_page.models import RoutablePageMixin, route
-from django.shortcuts import render
 
 from base import blocks
 
@@ -100,28 +103,33 @@ class BlogIndexPage(RoutablePageMixin, Page):
         context = super().get_context(request, *args, **kwargs)
 
         all_posts = BlogPage.objects.live().public().order_by('-date')
-        all_tags = [(tag.lower(), slug) for tag, slug in all_posts.values_list('tags__name', 'tags__slug')]
-        all_tags = sorted(list(set(all_tags)))
+        # all_tags = [(tag.lower(), slug) for tag, slug in all_posts.values_list('tags__name', 'tags__slug')]
+        # all_tags = sorted(list(set(all_tags)))
 
         if request.GET.get('tag', None):
             tags = request.GET.get('tag')
             all_posts = all_posts.filter(tags__slug__in=[tags])
 
-        # Paginate all posts
-        paginator = Paginator(all_posts, 12)
-        page = request.GET.get('page')
-        try:
-            posts = paginator.page(page)
-        except PageNotAnInteger:
-            posts = paginator.page(1)
-        except EmptyPage:
-            posts = paginator.page(paginator.num_pages)
-
+        posts = paginate(request, all_posts, 12)
         context['posts'] = posts
-        context['all_tags'] = all_tags
-        context['num_posts'] = paginator.count
-        context["categories"] = BlogCategory.objects.all()
+
+        # context['categories'] = BlogCategory.objects.all()
+        # context['all_tags'] = all_tags
         return context
+
+    @route(r"^category/(?P<cat_slug>[-\w]*)/$", name="category_view")
+    def category_view(self, request, cat_slug):
+        context = self.get_context(request)
+        try:
+            category = BlogCategory.objects.get(slug=cat_slug)
+        except (ObjectDoesNotExist, MultipleObjectsReturned):
+            return HttpResponseRedirect(reverse('blog_index_page'))
+
+        all_posts = BlogPage.objects.live().public().order_by('-date').filter(categories__in=[category])
+        posts = paginate(request, all_posts, 12)
+        context['posts'] = posts
+        context['category'] = category
+        return render(request, 'blog/blog_index_page.html', context)
 
     @route(r'^tagged/(\w+)/$')
     def index_by_tag(self, request, tag):
@@ -131,6 +139,12 @@ class BlogIndexPage(RoutablePageMixin, Page):
             'page': self,
             'blogpages': blogpages
         })
+
+    @route(r'^latest/$', name='latest_posts')
+    def latest_blog_posts(self, request, *args, **kwargs):
+        context = self.get_context(request, *args, **kwargs)
+        context['posts'] = context['posts'][:4]
+        return render(request, 'blog/latest_posts.html', context)
 
     content_panels = Page.content_panels + [
         FieldPanel('intro', classname="full")
@@ -156,21 +170,25 @@ class BlogTagIndexPage(Page):
 @register_snippet
 class BlogCategory(models.Model):
     name = models.CharField(max_length=255)
-    icon = models.ForeignKey(
-        'wagtailimages.Image', null=True, blank=True,
-        on_delete=models.SET_NULL, related_name='+'
+    slug = models.SlugField(
+        verbose_name="slug",
+        allow_unicode=True,
+        max_length=255,
+        help_text='A slug to identify posts by this category',
     )
 
     panels = [
         FieldPanel('name'),
-        ImageChooserPanel('icon'),
+        FieldPanel('slug'),
     ]
+
+    class Meta:
+        verbose_name = "Blog Category"
+        verbose_name_plural = "Blog Categories"
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
-
-    class Meta:
-        verbose_name_plural = 'blog categories'
 
 
 @register_snippet

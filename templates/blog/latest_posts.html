@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template-blogindexpage{% endblock %}
 
@@ -10,12 +10,8 @@
 
             <div class="row mb-0">
                 <div class="col-lg-12">
-                    <h1 class="mt-5 text-uppercase">{{ page.title }} {{ num_posts }}</h1>
+                    <h1 class="mt-5 text-uppercase">{{ page.title }}</h1>
                     <div class="lead">{{ page.intro|richtext }}</div>
-                    <p><a href="{% routablepageurl page 'latest_posts' %}">Latest</a> </p>
-                    {% if category %}
-                    <p>Showing blogs posted in {{ category }}</p>
-                    {% endif %}
                 </div>
             </div>
 
@@ -59,6 +55,7 @@
 
 
             <div class="row">
+            <h1>Latest posts</h1>
                 {% for post in posts %}
                     <div class="col-lg-6 mb-3 ps-3 pe-3">
                         {% with post=post.specific %}
