@@ -43,7 +43,6 @@ a.index-link {
     display: inline-block;
     color: rgb(33, 37, 41);
     font-weight: 300;
-    text-decoration: none;
     background: #E6EDF3;
     border-radius: 4px;
     height: 24px;
@@ -53,10 +52,23 @@ a.index-link {
 }
 
 
+.tags a:hover, .category a:hover{
+    color: hotpink;
+}
+
+.category {
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
 .pink {
     background-color: hotpink;
 }
 
+a.tag-on, a.category-on {
+    color: deeppink;!important;
+    font-weight: bold;
+}
 
 /* X-Small devices (portrait phones, less than 576px) */
 /*@media (max-width: 575.98px) { ... }*/

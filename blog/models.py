@@ -1,10 +1,8 @@
 from django import forms
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
-from .utils import paginate
 from django.db import models
-from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.shortcuts import render
-from django.urls import reverse
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from taggit.models import TaggedItemBase
@@ -18,6 +16,7 @@ from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
 
 from base import blocks
+from .utils import paginate
 
 
 class BlogPageTag(TaggedItemBase):
@@ -103,48 +102,42 @@ class BlogIndexPage(RoutablePageMixin, Page):
         context = super().get_context(request, *args, **kwargs)
 
         all_posts = BlogPage.objects.live().public().order_by('-date')
-        # all_tags = [(tag.lower(), slug) for tag, slug in all_posts.values_list('tags__name', 'tags__slug')]
-        # all_tags = sorted(list(set(all_tags)))
+        all_tags = [(tag.lower(), slug) for tag, slug in all_posts.values_list('tags__name', 'tags__slug')]
+        all_tags = sorted(list(set(all_tags)))
 
         if request.GET.get('tag', None):
-            tags = request.GET.get('tag')
-            all_posts = all_posts.filter(tags__slug__in=[tags])
+            tag = request.GET.get('tag')
+            context['selected_tag'] = tag
+            all_posts = all_posts.filter(tags__slug__in=[tag])
 
         posts = paginate(request, all_posts, 12)
         context['posts'] = posts
+        context["categories"] = BlogCategory.objects.all()
 
-        # context['categories'] = BlogCategory.objects.all()
-        # context['all_tags'] = all_tags
+        context['all_tags'] = all_tags
+        context['location'] = self.url
         return context
 
-    @route(r"^category/(?P<cat_slug>[-\w]*)/$", name="category_view")
+    @route(r'^category/(?P<cat_slug>[-\w]*)/$', name="category_view")
     def category_view(self, request, cat_slug):
         context = self.get_context(request)
         try:
             category = BlogCategory.objects.get(slug=cat_slug)
         except (ObjectDoesNotExist, MultipleObjectsReturned):
-            return HttpResponseRedirect(reverse('blog_index_page'))
+            return redirect('/blog/')
 
         all_posts = BlogPage.objects.live().public().order_by('-date').filter(categories__in=[category])
+
+        if request.GET.get('tag', None):
+            tag = request.GET.get('tag')
+            context['selected_tag'] = tag
+            all_posts = all_posts.filter(tags__slug__in=[tag])
+
         posts = paginate(request, all_posts, 12)
         context['posts'] = posts
         context['category'] = category
+        context['location'] = self.url + 'category/' + cat_slug
         return render(request, 'blog/blog_index_page.html', context)
-
-    @route(r'^tagged/(\w+)/$')
-    def index_by_tag(self, request, tag):
-        blogpages = BlogPage.objects.filter(tags__name=tag)
-
-        return render(request, 'blog/index_by_tag.html', {
-            'page': self,
-            'blogpages': blogpages
-        })
-
-    @route(r'^latest/$', name='latest_posts')
-    def latest_blog_posts(self, request, *args, **kwargs):
-        context = self.get_context(request, *args, **kwargs)
-        context['posts'] = context['posts'][:4]
-        return render(request, 'blog/latest_posts.html', context)
 
     content_panels = Page.content_panels + [
         FieldPanel('intro', classname="full")
@@ -185,7 +178,7 @@ class BlogCategory(models.Model):
     class Meta:
         verbose_name = "Blog Category"
         verbose_name_plural = "Blog Categories"
-        ordering = ["name"]
+        ordering = ["-name"]
 
     def __str__(self):
         return self.name
