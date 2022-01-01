@@ -57,7 +57,7 @@
                     <hr>
                     <h6>Tagged with:</h6>
                     {% for tag in page.get_ordered_tags %}
-                        <a href="{% slugurl 'tags' %}?tag={{ tag }}" class="small">
+                        <a href="{% slugurl 'blog' %}?tag={{ tag }}" class="small">
                             {{ tag }}
                         </a>
                     {% endfor %}
