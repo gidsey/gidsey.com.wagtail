@@ -14,6 +14,7 @@ psycopg2-binary = "==2.9.2"
 sentry-sdk = "*"
 wagtail-robots = "==0.3.1"
 django-debug-toolbar = "*"
+wagtailmenus = "==3.0.2"
 
 [dev-packages]
 
