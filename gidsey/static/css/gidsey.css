@@ -13,8 +13,8 @@ a, .page-link {
     text-decoration: none;
 }
 
-a:hover, .page-link:hover {
-    color: hotpink;
+a:hover, page-link:hover {
+    color: hotpink!important;
 }
 
 .page-item.active .page-link {
@@ -52,7 +52,7 @@ a.index-link {
 }
 
 
-.tags a:hover, .category a:hover{
+.tags a:hover, .category a:hover {
     color: hotpink;
 }
 

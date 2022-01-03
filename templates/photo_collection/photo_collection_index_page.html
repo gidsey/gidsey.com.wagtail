@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags %}
+{% block body_class %}template-photocollectionindexpage{% endblock %}
+
+{% block content %}
+    <main class="flex-shrink-0">
+        <div class="container">
+
+            <div class="row mb-0">
+                <div class="col-lg-12">
+                    <h1 class="mt-5 text-uppercase">{{ page.title }}</h1>
+                    <div class="lead">{{ page.intro|richtext }}</div>
+                </div>
+            </div>
+
+
+              <div class="row">
+                {% if collections %}
+                    {% for collection in collections %}
+                        <div class="col-lg-6 mb-3 ps-3 pe-3">
+                            {% with collection=collection.specific %}
+                                <a href="{% pageurl collection %}" class="index-link"><h3>{{ collection.title }}</h3></a>
+                                {% with collection.hero as hero %}
+                                    {% if hero %}
+                                        {% image hero fill-800x533 as img %}
+                                        <a href="{% pageurl collection %}">
+                                            <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid"></a>
+                                    {% endif %}
+                                {% endwith %}
+                                <p class="small">{{ collection.intro }}</p>
+                            {% endwith %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h3>No collections</h3>
+                    <p>No collections found that match this criteria, please re-select.</p>
+                {% endif %}
+            </div>
+
+
+
+        </div>
+    </main>
+
+
+
+{% endblock %}

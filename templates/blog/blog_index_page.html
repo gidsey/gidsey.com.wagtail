@@ -1,7 +1,5 @@
 {% extends "base.html" %}
-
 {% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags %}
-
 {% block body_class %}template-blogindexpage{% endblock %}
 
 {% block content %}
@@ -57,9 +55,9 @@
             <div class="row">
                 {% if posts %}
                     {% for post in posts %}
-                        <div class="col-lg-6 mb-3 ps-3 pe-3">
+                        <div class="col-lg-3 mb-3 ps-3 pe-3">
                             {% with post=post.specific %}
-                                <a href="{% pageurl post %}" class="index-link"><h3>{{ post.title }}</h3></a>
+                                <a href="{% pageurl post %}" class="index-link"><h5>{{ post.title|truncatechars:20 }}</h5></a>
                                 {% with post.hero as hero %}
                                     {% if hero %}
                                         {% image hero fill-800x533 as img %}
