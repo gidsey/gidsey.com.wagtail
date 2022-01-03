@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'home',
     'base',
     'blog',
-    'collection',
     'about',
     'search',
 
