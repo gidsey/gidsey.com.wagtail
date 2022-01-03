@@ -97,3 +97,16 @@ class OneThirdTwoThirds(StructBlock):
         template = 'blog/one_third_two_thirds_block.html'
         icon = 'image'
         label = 'Two images arranged in a one-third / two-thirds layout'
+
+
+class PhotoCollectionBlock(StructBlock):
+    """
+    Two images side by side, used in Photo Collections.
+    """
+    left_image = ImageChooserBlock(required=True, help_text='add left-hand image')
+    right_image = ImageChooserBlock(required=True, help_text='add right-hand image')
+
+    class Meta:
+        template = 'photo_collection/photo_collection_block.html'
+        icon = 'image'
+        label = 'Two images side by side, used in Photo Collections'
