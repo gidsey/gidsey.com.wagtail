@@ -14,7 +14,7 @@ a, .page-link {
 }
 
 a:hover, page-link:hover {
-    color: hotpink!important;
+    color: hotpink !important;
 }
 
 .page-item.active .page-link {
@@ -66,7 +66,8 @@ a.index-link {
 }
 
 a.tag-on, a.category-on {
-    color: deeppink;!important;
+    color: deeppink;
+!important;
     font-weight: bold;
 }
 
@@ -76,11 +77,31 @@ a.tag-on, a.category-on {
     padding: 50px;
 }
 
+.collection-container {
+    max-height: 426px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.collection_img {
+    max-height: 426px;
+}
+
 /* X-Small devices (portrait phones, less than 576px) */
 /*@media (max-width: 575.98px) { ... }*/
 
 /* Small devices (landscape phones, less than 768px) */
 @media (max-width: 767.98px) {
+
+    .collection-container {
+        max-height: 100% !important;
+        overflow: visible;
+    }
+
+    .collection_img {
+        max-height: 100% !important;
+    }
+
     .image-block-gap {
         margin-bottom: 1rem;
     }
