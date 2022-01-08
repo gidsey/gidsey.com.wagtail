@@ -11,7 +11,7 @@ class PhotoCollection(Page):
     """
     Photo collection detail page
     """
-    intro = models.CharField(max_length=250)
+    intro = models.CharField(max_length=250, null=True, blank=True)
     hero = models.ForeignKey(
         'wagtailimages.Image', null=True, blank=True,
         on_delete=models.SET_NULL, related_name='+'

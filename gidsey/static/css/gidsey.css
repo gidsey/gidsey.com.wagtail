@@ -70,6 +70,12 @@ a.tag-on, a.category-on {
     font-weight: bold;
 }
 
+
+.slide {
+    border: 1px solid #666666;
+    padding: 50px;
+}
+
 /* X-Small devices (portrait phones, less than 576px) */
 /*@media (max-width: 575.98px) { ... }*/
 

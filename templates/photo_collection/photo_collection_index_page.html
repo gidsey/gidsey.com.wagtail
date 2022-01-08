@@ -24,7 +24,7 @@
                                     {% if hero %}
                                         {% image hero fill-800x533 as img %}
                                         <a href="{% pageurl collection %}">
-                                            <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid"></a>
+                                            <img src="{{ img.url }}" alt="{{ img.alt }}" class="slide img-fluid"></a>
                                     {% endif %}
                                 {% endwith %}
                                 <p class="small">{{ collection.intro }}</p>
