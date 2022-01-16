@@ -1,11 +1,14 @@
 {% load wagtailimages_tags %}
+{% load lazyimages_tags %}
 <div class="row collection-container">
         <div class="col-md-6 mb-1">
-            {% image self.left_image width-1272 as img %}
-            <img src="{{ img.url }}" alt="{{ img.alt }}" title="{{ img.alt }}" class="img-fluid collection_img">
+            {% lazy_image self.left_image width-1272 as img %}
+{#            <img data-src="{{ img.url }}" src="{{ img.lazy_url }}" alt="{{ img.alt }}" title="{{ img.alt }}" class="lazy img-fluid collection_img">#}
+            {{ img.lazy_url }}
+
         </div>
         <div class="col-md-6">
-            {% image self.right_image width-1272 as img %}
-            <img src="{{ img.url }}" alt="{{ img.alt }}" title="{{ img.alt }}" class="img-fluid collection_img">
+            {% lazy_image self.right_image width-1272 as img %}
+{#            <img data-src="{{ img.url }}" src="{{ img.lazy_url }}" alt="{{ img.alt }}" title="{{ img.alt }}" class="lazy img-fluid collection_img">#}
         </div>
 </div>

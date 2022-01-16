@@ -63,6 +63,7 @@ INSTALLED_APPS = [
 
     'storages',
     'robots',
+    'wagtail_lazyimages',
 ]
 
 MIDDLEWARE = [
