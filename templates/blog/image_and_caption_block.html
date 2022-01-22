@@ -3,14 +3,14 @@
     <div class="col-md-10">
         {% image self.image width-2000 as img %}
         {% if not self.hide_caption %}
-            <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid">
+            <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid">
             {% if self.alt_caption %}
                 <p class="text-muted small">{{ self.alt_caption }}</p>
             {% else %}
                 <p class="text-muted small">{{ self.image.title }}</p>
             {% endif %}
         {% else %}
-            <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid mb-2">
+            <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid mb-2">
         {% endif %}
     </div>
 </div>

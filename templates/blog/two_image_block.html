@@ -3,28 +3,28 @@
     <div class="col-md-5">
         {% image self.left_image width-2000 as img %}
         {% if not self.hide_captions %}
-            <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid">
+            <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid">
             {% if self.left_alt_caption %}
                 <p class="text-muted small">{{ self.left_alt_caption }}</p>
             {% else %}
                 <p class="text-muted small">{{ self.left_image.title }}</p>
             {% endif %}
         {% else %}
-            <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid">
+            <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid">
         {% endif %}
 
     </div>
     <div class="col-md-5">
         {% image self.right_image width-2000 as img %}
         {% if not self.hide_captions %}
-            <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid">
+            <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid">
             {% if self.right_alt_caption %}
                 <p class="text-muted small">{{ self.right_alt_caption }}</p>
             {% else %}
                 <p class="text-muted small">{{ self.right_image.title }}</p>
             {% endif %}
         {% else %}
-            <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid">
+            <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid">
         {% endif %}
     </div>
 </div>
