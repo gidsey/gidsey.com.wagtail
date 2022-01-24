@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'home',
     'base',
     'blog',
+    'common',
     'about',
     'search',
     'photo_collection',
