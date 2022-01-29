@@ -1,8 +1,9 @@
+import uuid
+
 from django import template
+from django.utils.safestring import mark_safe
 from wagtail.images.models import SourceImageIOError
 from wagtail.images.templatetags.wagtailimages_tags import ImageNode
-from django.utils.safestring import mark_safe
-import uuid
 
 register = template.Library()
 
@@ -169,7 +170,6 @@ class ResponsiveImageNode(ImageNode, template.Node):
 
 @register.filter
 def responsive_css(image, prefix='ri'):
-
     if not image or not image.srcset:
         return ''
 
