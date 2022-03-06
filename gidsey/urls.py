@@ -1,7 +1,6 @@
 from django.conf import settings
-from django.conf.urls import url
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.core import urls as wagtail_urls
@@ -19,7 +18,7 @@ urlpatterns = [
 
     path('sitemap.xml', sitemap),
 
-    url(r'^robots\.txt', include('robots.urls')),
+    re_path(r'^robots\.txt', include('robots.urls')),
 
 ]
 
