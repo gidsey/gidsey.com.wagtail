@@ -46,7 +46,6 @@ class PhotoCollectionIndexPage(Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-
-        collections = PhotoCollection.objects.live().public().order_by('-title')
+        collections = PhotoCollection.objects.live().public().order_by('title')
         context['collections'] = collections
         return context
