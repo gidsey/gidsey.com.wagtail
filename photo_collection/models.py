@@ -49,3 +49,11 @@ class PhotoCollectionIndexPage(Page):
         collections = PhotoCollection.objects.live().public().order_by('title')
         context['collections'] = collections
         return context
+
+
+class PhotoDetailPage(Page):
+    """
+    Single photo detail page.
+    """
+    template = 'photo_collection/photo_detail_page.html'
+
