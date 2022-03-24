@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags %}
+
+{#{% block body_class %}template-photocollectionpage{% endblock %}#}
+
+{% block content %}
+    <main class="flex-shrink-0">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="mt-5 mb-3 text-center">{{ image|upper }}</h3>
+                </div>
+            </div>
+
+            {# Content #}
+            <img src="{{ rendition }}" alt="{{ image }}" title="{{ image }}" class="img-fluid slide">
+
+
+            <p class="clearfix mt-5 text-center"><a href="#" onclick="window.history.go(-1); return false;">< Back</a>
+            </p>
+
+        </div>
+    </main>
+
+{% endblock %}
