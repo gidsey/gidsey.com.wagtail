@@ -1,5 +1,9 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
+from django.http import Http404
+from wagtail import images
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -49,3 +53,23 @@ class PhotoCollectionIndexPage(Page):
         collections = PhotoCollection.objects.live().public().order_by('title')
         context['collections'] = collections
         return context
+
+
+class PhotoDetailPage(RoutablePageMixin, Page):
+    """
+    Single photo detail page
+    """
+
+    template = 'photo_collection/photo_detail_page.html'
+    max_count = 1
+
+    @route(r'^photo/(\d+)/$', name='single_photo')
+    def single_photo(self, request, photo=None):
+        try:
+            image = images.get_image_model().objects.get(id=photo)
+            return self.render(request, context_overrides={
+                'image': image,
+                'rendition': image.get_rendition('width-2400|jpegquality-80').url,
+            })
+        except ObjectDoesNotExist:
+            raise Http404
