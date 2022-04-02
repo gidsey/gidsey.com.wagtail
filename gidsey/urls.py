@@ -16,9 +16,6 @@ urlpatterns = [
 
     path('search/', search_views.search, name='search'),
 
-    # Local apps
-    path('photo_collection/', include('photo_collection.urls')),
-
     path('sitemap.xml', sitemap),
 
     re_path(r'^robots\.txt', include('robots.urls')),

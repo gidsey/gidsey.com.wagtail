@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load wagtailimages_tags %}
 {% block content %}
     <main class="flex-shrink-0">
         <div class="container">
@@ -12,7 +12,6 @@
 
             {# Content #}
             <img src="{{ rendition }}" alt="{{ image }}" title="{{ image }}" class="img-fluid slide">
-
             <p class="clearfix mt-5 text-center"><a href="#" onclick="window.history.go(-1); return false;">< Back</a>
             </p>
 

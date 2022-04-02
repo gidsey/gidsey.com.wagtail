@@ -1,17 +1,22 @@
-{% load wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
 <div class="row collection-container">
     <div class="col-md-6 mb-1">
         {% image self.left_image width-1272 as img %}
-        <a href="{% url 'photo_collection:photo-detail' self.left_image.id %}"><img src="{{ img.url }}" loading="lazy"
-                                                                                    alt="{{ img.alt }}"
-                                                                                    title="{{ img.alt }}"
-                                                                                    class="img-fluid collection_img"></a>
+        <a href="{% slugurl 'photo-detail-page' %}photo/{{ self.left_image.id }}">
+            <img src="{{ img.url }}" loading="lazy"
+                 alt="{{ img.alt }}"
+                 title="{{ img.alt }}"
+                 class="img-fluid collection_img">
+        </a>
     </div>
     <div class="col-md-6">
         {% image self.right_image width-1272 as img %}
-        <a href="{% url 'photo_collection:photo-detail' self.right_image.id %}"><img src="{{ img.url }}" loading="lazy"
-                                                                                    alt="{{ img.alt }}"
-                                                                                    title="{{ img.alt }}"
-                                                                                    class="img-fluid collection_img"></a>
+        <a href="{% slugurl 'photo-detail-page' %}photo/{{ self.right_image.id }}">
+            <img src="{{ img.url }}" loading="lazy"
+                 alt="{{ img.alt }}"
+                 title="{{ img.alt }}"
+                 class="img-fluid collection_img">
+        </a>
     </div>
 </div>
