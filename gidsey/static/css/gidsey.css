@@ -71,14 +71,13 @@ a.tag-on, a.category-on {
     font-weight: bold;
 }
 
-
 .slide {
     border: 1px solid #666666;
-    padding: 50px;
+    padding: 7%;
 }
 
 .img-container {
-    height: 700px;
+    max-height: 700px;
 }
 
 .img-container .img-responsive {
@@ -102,6 +101,7 @@ a.tag-on, a.category-on {
 .collection_img {
     max-height: 426px;
 }
+
 
 /* X-Small devices (portrait phones, less than 576px) */
 /*@media (max-width: 575.98px) { ... }*/
