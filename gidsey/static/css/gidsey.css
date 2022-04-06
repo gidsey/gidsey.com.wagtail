@@ -77,6 +77,21 @@ a.tag-on, a.category-on {
     padding: 50px;
 }
 
+.img-container {
+    height: 700px;
+}
+
+.img-container .img-responsive {
+    display: block;
+    width: auto;
+    max-height: 100%;
+    max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+
 .collection-container {
     max-height: 426px;
     overflow: hidden;
