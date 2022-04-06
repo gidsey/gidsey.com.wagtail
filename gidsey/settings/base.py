@@ -169,7 +169,8 @@ STATIC_URL = '/static/'
 # MEDIA_ROOT = f'{AWS_S3_ENDPOINT_URL}/'
 MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/'
 
-DEFAULT_FILE_STORAGE = 'gidsey.storage_backends.LocalMediaStorage'
+# DEFAULT_FILE_STORAGE = 'gidsey.storage_backends.LocalMediaStorage'
+DEFAULT_FILE_STORAGE = 'gidsey.storage_backends.ProductionMediaStorage'
 
 # Wagtail settings
 

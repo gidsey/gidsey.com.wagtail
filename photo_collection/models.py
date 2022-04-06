@@ -67,9 +67,10 @@ class PhotoDetailPage(RoutablePageMixin, Page):
     def single_photo(self, request, photo=None):
         try:
             image = images.get_image_model().objects.get(id=photo)
+            # print(f'image {image}')
             return self.render(request, context_overrides={
                 'image': image,
-                'rendition': image.get_rendition('width-2400|jpegquality-80').url,
+                'rendition': image.get_rendition('width-2000|jpegquality-80').url,
             })
         except ObjectDoesNotExist:
             raise Http404
