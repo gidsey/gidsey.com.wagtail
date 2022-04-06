@@ -7,6 +7,7 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
+from django.shortcuts import get_object_or_404
 
 from base import blocks
 
@@ -65,12 +66,9 @@ class PhotoDetailPage(RoutablePageMixin, Page):
 
     @route(r'^photo/(\d+)/$', name='single_photo')
     def single_photo(self, request, photo=None):
-        try:
-            image = images.get_image_model().objects.get(id=photo)
-            # print(f'image {image}')
-            return self.render(request, context_overrides={
-                'image': image,
-                'rendition': image.get_rendition('width-2000|jpegquality-80').url,
-            })
-        except ObjectDoesNotExist:
-            raise Http404
+        Image = images.get_image_model()
+        image = get_object_or_404(Image, id=photo)
+        print(f'Image =  {image}')
+        return self.render(request, context_overrides={
+            'image': image,
+        })
