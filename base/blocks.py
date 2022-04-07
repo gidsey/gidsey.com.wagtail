@@ -1,5 +1,6 @@
-from wagtail.core.blocks import StructBlock, RichTextBlock, CharBlock, BooleanBlock
+from wagtail.core.blocks import StructBlock, RichTextBlock, CharBlock, BooleanBlock, PageChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
+
 
 
 class SimpleRichTextBlock(RichTextBlock):
@@ -110,3 +111,20 @@ class PhotoCollectionBlock(StructBlock):
         template = 'photo_collection/photo_collection_block.html'
         icon = 'image'
         label = 'Two images side by side, used in Photo Collections'
+
+
+class PreviewPaneBlock(StructBlock):
+    """
+    Single square image, linking through to an internal page.
+    """
+    destination = PageChooserBlock(required=True, help_text='choose the page to link to')
+    preview_image = ImageChooserBlock(required=True, help_text='add a square image here')
+
+    class Meta:
+        template = 'home/preview_pane.html'
+        icon = 'image'
+        label = 'Single square image, linking through to an internal page'
+
+
+
+

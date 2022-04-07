@@ -77,10 +77,11 @@ a.tag-on, a.category-on {
 }
 
 .img-container {
-    max-height: 700px;
+    display: block;
+    height: 700px;
 }
 
-.img-container .img-responsive {
+.img-responsive {
     display: block;
     width: auto;
     max-height: 100%;

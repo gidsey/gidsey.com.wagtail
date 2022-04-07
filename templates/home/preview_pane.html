@@ -1,0 +1,13 @@
+{% load wagtailimages_tags %}
+
+<div class="row">
+    <div class="col-md-12 mb-1">
+        {{ self.destination }}<br>
+        {{ self.preview_image }}
+        {% image self.preview_image width-800 as p_img %}
+        <img src="{{ p_img.url }}" loading="lazy"
+             alt="{{ p_img.alt }}"
+             title="{{ p_img.alt }}"
+             class="img-fluid">
+    </div>
+</div>

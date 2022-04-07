@@ -9,9 +9,14 @@
         <div class="container">
             <div class="row mt-5">
                 <div class="col-lg-12">
-                        {% image page.hero width-2000 as img %}
-                        <img src="{{ img.url }}" class="img-fluid" alt="{{ img.alt }}">
+                    {# Content #}
+                    {% for block in page.content %}
+                        <div class="my-5"> {% include_block block %}</div>
+                    {% endfor %}
+
                 </div>
+
+
             </div>
         </div>
     </main>

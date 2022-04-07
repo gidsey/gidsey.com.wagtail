@@ -1,13 +1,11 @@
-from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
-from django.http import Http404
+from django.shortcuts import get_object_or_404
 from wagtail import images
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
-from django.shortcuts import get_object_or_404
 
 from base import blocks
 
@@ -68,7 +66,6 @@ class PhotoDetailPage(RoutablePageMixin, Page):
     def single_photo(self, request, photo=None):
         Image = images.get_image_model()
         image = get_object_or_404(Image, id=photo)
-        print(f'Image =  {image}')
         return self.render(request, context_overrides={
             'image': image,
         })
