@@ -9,7 +9,8 @@ from base import blocks
 
 class HomePage(Page):
     max_count = 1
-    body = RichTextField(blank=True)
+    home_title = models.CharField(max_length=250, null=True, blank=True)
+    intro = RichTextField(blank=True)
     hero = models.ForeignKey(
         'wagtailimages.Image', null=True, blank=True,
         on_delete=models.SET_NULL, related_name='+'
@@ -24,7 +25,8 @@ class HomePage(Page):
     )
 
     content_panels = Page.content_panels + [
-        FieldPanel('body', classname="full"),
+        FieldPanel('home_title'),
+        FieldPanel('intro', classname="full"),
         ImageChooserPanel('hero'),
         StreamFieldPanel('content'),
     ]
