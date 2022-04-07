@@ -76,6 +76,12 @@ a.tag-on, a.category-on {
     padding: 7%;
 }
 
+.slide-2 {
+    padding: 12%;
+    border: 2px solid #fff4f6;
+    border-radius: 12px;
+}
+
 .img-container {
     display: block;
     height: 700px;

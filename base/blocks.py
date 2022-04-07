@@ -2,7 +2,6 @@ from wagtail.core.blocks import StructBlock, RichTextBlock, CharBlock, BooleanBl
 from wagtail.images.blocks import ImageChooserBlock
 
 
-
 class SimpleRichTextBlock(RichTextBlock):
     def __init__(self, required=True, help_text=None, editor='default', features=None, validators=(), **kwargs):
         super().__init__(**kwargs)
@@ -117,14 +116,11 @@ class PreviewPaneBlock(StructBlock):
     """
     Single square image, linking through to an internal page.
     """
-    destination = PageChooserBlock(required=True, help_text='choose the page to link to')
     preview_image = ImageChooserBlock(required=True, help_text='add a square image here')
+    destination = PageChooserBlock(required=True, help_text='choose the page to link to')
 
     class Meta:
         template = 'home/preview_pane.html'
         icon = 'image'
         label = 'Single square image, linking through to an internal page'
-
-
-
 
