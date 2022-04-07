@@ -17,6 +17,16 @@ a:hover, page-link:hover {
     color: hotpink !important;
 }
 
+.navbar-light .navbar-nav .nav-link.active {
+    text-decoration: underline;
+}
+
+.navbar-light .navbar-nav .nav-link.ancestor {
+    text-decoration: underline;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.9)
+}
+
 .page-item.active .page-link {
     background-color: #7EA1BF;
     border-color: #7EA1BF;
