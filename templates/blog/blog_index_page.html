@@ -44,11 +44,12 @@
                                 {% else %}
                                    class="small"
                                 {% endif %}>{{ tag.0 }}</a>
-
                             {% endfor %}
+                         {% if selected_tag %}<span class="rm-tags"><a href="{% slugurl 'blog' %}">clear filters</a></span>{% endif %}
                         </div>
                     {% endif %}
                 </div>
+
             </div>
 
 

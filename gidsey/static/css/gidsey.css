@@ -67,6 +67,10 @@ a.index-link {
 }
 
 
+.rm-tags a {
+    background: #ced4d9;
+}
+
 .tags a:hover, .category a:hover {
     color: hotpink;
 }
