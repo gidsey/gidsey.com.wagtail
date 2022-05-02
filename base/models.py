@@ -7,7 +7,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 @register_setting(icon='mail')
 class SocialMedia(BaseSetting):
     site_name = models.CharField(max_length=255, null=True, blank=True,
-                                 help_text='Webiste name')
+                                 help_text='Website name')
     email = models.EmailField(null=True, blank=True,
                               help_text='Your email address')
     twitter = models.CharField(max_length=255, null=True, blank=True,
@@ -19,6 +19,7 @@ class SocialMedia(BaseSetting):
     glass = models.URLField(null=True, blank=True,
                             help_text='Your Glass profile page URL')
 
+    # noinspection PyUnresolvedReferences
     site_icon = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -28,6 +29,7 @@ class SocialMedia(BaseSetting):
         related_name='+'
     )
 
+    # noinspection PyUnresolvedReferences
     favicon = models.ForeignKey(
         'wagtailimages.Image',
         null=True,

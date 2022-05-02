@@ -15,7 +15,9 @@ from wagtail.search import index
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
 
-from base import blocks
+from base.blocks import (TitleAndTextBlock, SectionHeadBlock, ImageBlock, TwoImageBlock,
+                         TwoThirdsOneThird, OneThirdTwoThirds)
+from base.mixins import SocialMetaMixin
 from .utils import paginate
 
 
@@ -27,24 +29,26 @@ class BlogPageTag(TaggedItemBase):
     )
 
 
-class BlogPage(Page):
+class BlogPage(SocialMetaMixin, Page):
     """
     Blog detail page.
     """
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
+
+    # noinspection PyUnresolvedReferences
     hero = models.ForeignKey(
         'wagtailimages.Image', null=True, blank=True,
         on_delete=models.SET_NULL, related_name='+'
     )
     content = StreamField(
         [
-            ('title_and_text', blocks.TitleAndTextBlock()),
-            ('section_head', blocks.SectionHeadBlock()),
-            ('image', blocks.ImageBlock()),
-            ('two_images', blocks.TwoImageBlock()),
-            ('two_thirds_one_third', blocks.TwoThirdsOneThird()),
-            ('one_third_two_thirds', blocks.OneThirdTwoThirds()),
+            ('title_and_text', TitleAndTextBlock()),
+            ('section_head', SectionHeadBlock()),
+            ('image', ImageBlock()),
+            ('two_images', TwoImageBlock()),
+            ('two_thirds_one_third', TwoThirdsOneThird()),
+            ('one_third_two_thirds', OneThirdTwoThirds()),
         ],
         null=True,
         blank=True
@@ -184,6 +188,7 @@ class BlogCategory(models.Model):
         return self.name
 
 
+# noinspection PyUnresolvedReferences
 @register_snippet
 class BlogAuthor(models.Model):
     """
@@ -240,6 +245,7 @@ class BlogPageGalleryImage(Orderable):
     Select one or more images for blog pages.
     """
     page = ParentalKey(BlogPage, on_delete=models.CASCADE, related_name='gallery_images')
+    # noinspection PyUnresolvedReferences
     image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'
     )

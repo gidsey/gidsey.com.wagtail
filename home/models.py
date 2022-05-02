@@ -11,6 +11,7 @@ class HomePage(Page):
     max_count = 1
     home_title = models.CharField(max_length=250, null=True, blank=True)
     intro = RichTextField(blank=True)
+    # noinspection PyUnresolvedReferences
     hero = models.ForeignKey(
         'wagtailimages.Image', null=True, blank=True,
         on_delete=models.SET_NULL, related_name='+'

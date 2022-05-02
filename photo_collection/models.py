@@ -7,7 +7,7 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 
-from base import blocks
+from base.blocks import PhotoCollectionBlock
 
 
 class PhotoCollection(Page):
@@ -15,13 +15,14 @@ class PhotoCollection(Page):
     Photo collection detail page
     """
     intro = models.CharField(max_length=250, null=True, blank=True)
+    # noinspection PyUnresolvedReferences
     hero = models.ForeignKey(
         'wagtailimages.Image', null=True, blank=True,
         on_delete=models.SET_NULL, related_name='+'
     )
     content = StreamField(
         [
-            ('photo_collection_block', blocks.PhotoCollectionBlock()),
+            ('photo_collection_block', PhotoCollectionBlock()),
         ],
         null=True,
         blank=True
