@@ -9,13 +9,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ page.search_description }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}{% endblock %}</title>
+    <title>{% block title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}
+    {% endif %}{% endblock %}</title>
     <!-- OG tags -->
-    <meta property="og:title" content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}">
+    <meta property="og:title"
+          content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}">
     <meta property="og:description" content="{{ page.search_description }}">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
-    {% image page.twitter_card_image fill-1200x628 as card_img %}
-     <meta property="og:image" content="{{ card_img.url }}">
+    <meta name="twitter:title"
+          content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}">
+    <meta property="twitter:description" content="{{ page.search_description }}">
+    <meta property="twitter:image:alt" content="{{ page.social_img_alt_text }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="en_GB"/>
+    {% image page.twitter_card_image fill-1200x628 as twitter_img %}<meta property="twitter:image" content="{{ twitter_img.url }}">
+    {% image page.fb_og_image fill-1200x628 as fb_img %}<meta name="og:image" content="{{ fb_img.url }}">
     <!-- Fonts -->
     <link rel="stylesheet" href="https://use.typekit.net/jzp7zzr.css">
     <!-- Bootstrap 5 CSS -->
@@ -26,7 +35,8 @@
     <!-- Scripts -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
     <!-- Favicon -->
-    {% image settings.base.SocialMedia.favicon original as favicon %}<link rel="shortcut icon" type="image/png" href="{{ favicon.url }}">
+    {% image settings.base.SocialMedia.favicon original as favicon %}
+    <link rel="shortcut icon" type="image/png" href="{{ favicon.url }}">
 </head>
 
 <body class="d-flex flex-column h-100 {% block body_class %}{% endblock %}">

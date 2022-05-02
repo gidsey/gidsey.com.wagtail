@@ -6,7 +6,7 @@
 
             {% if posts.has_previous %}
                 <li class="page-item">
-                    <a href="?page={{ posts.previous_page_number }}" class="page-link"><span>&laquo;</span></a>
+                    <a href="?page={{ posts.previous_page_number }}{% if selected_tag %}&tag={{ selected_tag }}{% endif %}" class="page-link"><span>&laquo;</span></a>
                 </li>
             {% else %}
                 <li class="page-item disabled">
@@ -16,7 +16,7 @@
 
             {% for page_num in posts.paginator.page_range %}
                 <li class="page-item {% if page_num == posts.number %} active{% endif %}">
-                    <a href="?page={{ page_num }}" class="page-link">
+                    <a href="?page={{ page_num }}{% if selected_tag %}&tag={{ selected_tag }}{% endif %}" class="page-link">
                         {{ page_num }}
                     </a>
                 </li>
@@ -24,7 +24,7 @@
 
             {% if posts.has_next %}
                 <li class="page-item">
-                    <a href="?page={{ posts.next_page_number }}" class="page-link"><span>&raquo;</span></a>
+                    <a href="?page={{ posts.next_page_number }}{% if selected_tag %}&tag={{ selected_tag }}{% endif %}" class="page-link"><span>&raquo;</span></a>
                 </li>
                 {% else %}
                  <li class="page-item disabled">
