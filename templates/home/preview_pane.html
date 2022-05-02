@@ -1,0 +1,9 @@
+{% load wagtailimages_tags %}
+
+    <div class="col-lg-4 g-2 mb-0">
+        {% image self.preview_image width-800 as img %}
+        <a href="{{ self.destination.url }}"> <img src="{{ img.url }}" loading="lazy"
+             alt="{{ img.alt }}"
+             title="{{ self.destination }}"
+             class="img-fluid slide-2"></a>
+    </div>

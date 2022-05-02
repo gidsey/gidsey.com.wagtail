@@ -8,8 +8,8 @@
 
             <div class="row mb-0">
                 <div class="col-lg-12">
-                    <h1 class="mt-5 text-uppercase">{{ page.title }} {{ num_posts }}</h1>
-                    <div class="lead">{{ page.intro|richtext }}</div>
+                    <h1 class="page-title mt-4 mb-0 text-uppercase">{{ page.title }}</h1>
+                    <div class="lead mb-5">{{ page.intro|richtext }}</div>
                 </div>
             </div>
 
@@ -44,11 +44,12 @@
                                 {% else %}
                                    class="small"
                                 {% endif %}>{{ tag.0 }}</a>
-
                             {% endfor %}
+                         {% if selected_tag %}<span class="rm-tags"><a href="{% slugurl 'blog' %}">clear filters</a></span>{% endif %}
                         </div>
                     {% endif %}
                 </div>
+
             </div>
 
 

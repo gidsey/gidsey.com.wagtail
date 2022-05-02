@@ -7,6 +7,11 @@ p {
     line-height: 24px;
 }
 
+.page-title {
+    font-size: 1.6rem;
+}
+
+
 a, .page-link {
     color: rgb(33, 37, 41);
     font-weight: 700;
@@ -15,6 +20,16 @@ a, .page-link {
 
 a:hover, page-link:hover {
     color: hotpink !important;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+    text-decoration: underline;
+}
+
+.navbar-light .navbar-nav .nav-link.ancestor {
+    text-decoration: underline;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.9)
 }
 
 .page-item.active .page-link {
@@ -52,6 +67,10 @@ a.index-link {
 }
 
 
+.rm-tags a {
+    background: #ced4d9;
+}
+
 .tags a:hover, .category a:hover {
     color: hotpink;
 }
@@ -71,22 +90,43 @@ a.tag-on, a.category-on {
     font-weight: bold;
 }
 
-
 .slide {
     border: 1px solid #666666;
-    padding: 50px;
+    padding: 7%;
 }
+
+.slide-2 {
+    padding: 12%;
+    border: 2px solid #fff4f6;
+    border-radius: 12px;
+}
+
+.img-container {
+    display: block;
+    height: 700px;
+}
+
+.img-responsive {
+    display: block;
+    width: auto;
+    max-height: 100%;
+    max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
 
 .collection-container {
     max-height: 426px;
     overflow: hidden;
     text-align: center;
-    margin-bottom: 100px;
 }
 
 .collection_img {
     max-height: 426px;
 }
+
 
 /* X-Small devices (portrait phones, less than 576px) */
 /*@media (max-width: 575.98px) { ... }*/
