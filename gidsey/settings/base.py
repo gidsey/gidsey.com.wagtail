@@ -146,7 +146,7 @@ AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY") or ImproperlyCon
 AWS_S3_ENDPOINT_URL = os.environ.get("AWS_S3_ENDPOINT_URL") or ImproperlyConfigured("AWS_S3_ENDPOINT_URL not set")
 AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME") or ImproperlyConfigured("AWS_S3_REGION_NAME not set")
 AWS_DEFAULT_ACL = 'public-read'
-
+AWS_QUERYSTRING_AUTH = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
