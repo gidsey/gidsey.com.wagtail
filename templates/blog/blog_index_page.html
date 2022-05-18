@@ -61,7 +61,7 @@
                                 <a href="{% pageurl post %}" class="index-link"><h5>{{ post.title|truncatechars:20 }}</h5></a>
                                 {% with post.hero as hero %}
                                     {% if hero %}
-                                        {% image hero fill-800x533 as img %}
+                                        {% image hero fill-800x532 as img %}
                                         <a href="{% pageurl post %}">
                                             <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid"></a>
                                     {% endif %}
@@ -72,7 +72,7 @@
                     {% endfor %}
                 {% else %}
                     <h3>No posts</h3>
-                    <p>No blog posts found that match this criteria, please re-select.</p>
+                    <p>No blog posts found that match these criteria, please re-select.</p>
                 {% endif %}
             </div>
 
