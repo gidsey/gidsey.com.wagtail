@@ -22,7 +22,7 @@
                                 <a href="{% pageurl collection %}" class="index-link"><h3>{{ collection.title }}</h3></a>
                                 {% with collection.hero as hero %}
                                     {% if hero %}
-                                        {% image hero fill-800x533 as img %}
+                                        {% image hero fill-800x532 as img %}
                                         <a href="{% pageurl collection %}">
                                             <img src="{{ img.url }}" alt="{{ img.alt }}" class="slide img-fluid"></a>
                                     {% endif %}

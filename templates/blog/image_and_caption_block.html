@@ -1,7 +1,7 @@
 {% load wagtailimages_tags %}
 <div class="row">
     <div class="col-md-10">
-        {% image self.image width-2000 as img %}
+        {% image self.image width-1980 as img %}
         {% if not self.hide_caption %}
             <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid">
             {% if self.alt_caption %}

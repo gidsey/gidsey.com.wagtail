@@ -44,7 +44,7 @@
                 <div class="row">
                     {% for item in page.gallery_images.all %}
                         <div class="col-lg-4 mt-2 col-lg-4 px-1 img-gallery">
-                            {% image item.image fill-600x600 as img %}
+                            {% image item.image fill-580x580 as img %}
                             <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid">
                         </div>
                     {% endfor %}
