@@ -18,7 +18,7 @@
     <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
     <meta property="og:type" content="website"/>
     <meta property="og:locale" content="en_GB"/>
-    {% image page.fb_og_image fill-1200x628 as fb_img %}
+    {% image page.fb_og_image fill-1200x630 as fb_img %}
     <meta name="og:image" content="{{ fb_img.url }}">
     <!-- Twitter tags -->
     <meta name="twitter:site" content="@{{ settings.base.SocialMedia.twitter|capfirst }}"/>
@@ -28,10 +28,10 @@
     <meta property="twitter:description" content="{{ page.search_description }}"/>
     <meta property="twitter:image:alt" content="{{ page.social_img_alt_text }}"/>
     <meta name="twitter:card" content="summary_large_image"/>
-    {% image page.twitter_card_image fill-1200x628 as twitter_img %}
+    {% image page.twitter_card_image fill-1200x630 as twitter_img %}
     <meta name="twitter:image:src" content="{{ twitter_img.url }}">
     <meta name="twitter:image:width" content="1200"/>
-    <meta name="twitter:image:height" content="628"/>
+    <meta name="twitter:image:height" content="630"/>
     <!-- Fonts -->
     <link rel="stylesheet" href="https://use.typekit.net/jzp7zzr.css">
     <!-- Bootstrap 5 CSS -->
