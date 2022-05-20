@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
+
+
+{% block title %}{{ block.super }} - {{ image }}{% endblock title %}
+
 {% block content %}
     <main class="flex-shrink-0">
         <div class="container">
