@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
+
+
+{% block title %}{{ block.super }} - {{ image }}{% endblock title %}
+
 {% block content %}
     <main class="flex-shrink-0">
         <div class="container">
@@ -10,8 +14,8 @@
                 <div class="img-container">
                     {% image image max-1612x1108 as rendition %}
                     <img src="{{ rendition.url }}" alt="{{ rendition.alt }}" title="{{ rendition.alt }}"
-                         class="img-responsive slide">
-                </div>
+                         class="img-responsive slide"></div>
+
                 <p class="clearfix mt-4 text-center"><a href="#" onclick="window.history.go(-1); return false;">&lt; Back</a></p>
             </div>
 
