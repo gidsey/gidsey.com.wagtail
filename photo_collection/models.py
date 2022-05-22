@@ -8,9 +8,10 @@ from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from base.blocks import PhotoCollectionBlock
+from base.mixins import SocialMetaMixin
 
 
-class PhotoCollection(Page):
+class PhotoCollection(SocialMetaMixin, Page):
     """
     Photo collection detail page
     """
@@ -35,7 +36,7 @@ class PhotoCollection(Page):
     ]
 
 
-class PhotoCollectionIndexPage(Page):
+class PhotoCollectionIndexPage(SocialMetaMixin, Page):
     """
     Photo Collection listing page.
     """
