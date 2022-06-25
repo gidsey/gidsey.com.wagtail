@@ -66,8 +66,7 @@ class PhotoDetailPage(RoutablePageMixin, Page):
 
     @route(r'^photo/(\d+)/$', name='single_photo')
     def single_photo(self, request, photo=None):
-        Image = images.get_image_model()
-        image = get_object_or_404(Image, id=photo)
+        image = get_object_or_404(images.get_image_model(), id=photo)
         return self.render(request, context_overrides={
             'image': image,
         })

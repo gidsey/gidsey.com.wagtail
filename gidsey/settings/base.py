@@ -63,6 +63,7 @@ INSTALLED_APPS = [
 
     'storages',
     'robots',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -138,6 +139,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+#  Set the custom Image model
+WAGTAILIMAGES_IMAGE_MODEL = 'base.GidsImage'
+
 # AWS
 AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME") or ImproperlyConfigured(
     "AWS_STORAGE_BUCKET_NAME not set")
@@ -209,3 +213,4 @@ sentry_sdk.init(
     # django.contrib.auth) you may enable sending PII data.
     send_default_pii=True
 )
+
