@@ -16,9 +16,8 @@ class PhotoCollection(SocialMetaMixin, Page):
     Photo collection detail page
     """
     intro = models.CharField(max_length=250, null=True, blank=True)
-    # noinspection PyUnresolvedReferences
     hero = models.ForeignKey(
-        'wagtailimages.Image', null=True, blank=True,
+        images.get_image_model(), null=True, blank=True,
         on_delete=models.SET_NULL, related_name='+'
     )
     content = StreamField(

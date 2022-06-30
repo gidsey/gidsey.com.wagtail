@@ -1,4 +1,5 @@
 from django.db import models
+from wagtail import images
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page
@@ -12,7 +13,7 @@ class AboutPage(SocialMetaMixin, Page):
 
     body = RichTextField(blank=True)
     image = models.ForeignKey(
-        'wagtailimages.Image', null=True, blank=True,
+        images.get_image_model(), null=True, blank=True,
         on_delete=models.SET_NULL, related_name='+'
     )
 

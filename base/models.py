@@ -1,15 +1,18 @@
 from django.db import models
+from django_extensions.db.fields import AutoSlugField
+from wagtail import images
 from wagtail.admin.edit_handlers import MultiFieldPanel, ObjectList, TabbedInterface, FieldPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.models import Image, AbstractImage, AbstractRendition
 
-from django_extensions.db.fields import AutoSlugField
-
 
 #  Define the custom Image model
 class GidsImage(AbstractImage):
     slug = AutoSlugField(populate_from='title')
+
+    admin_form_fields = Image.admin_form_fields + (
+    )
 
 
 class CustomRendition(AbstractRendition):
@@ -36,9 +39,8 @@ class SocialMedia(BaseSetting):
     glass = models.URLField(null=True, blank=True,
                             help_text='Your Glass profile page URL')
 
-    # noinspection PyUnresolvedReferences
     site_icon = models.ForeignKey(
-        'wagtailimages.Image',
+        images.get_image_model(),
         null=True,
         blank=True,
         default=None,
@@ -46,9 +48,8 @@ class SocialMedia(BaseSetting):
         related_name='+'
     )
 
-    # noinspection PyUnresolvedReferences
     favicon = models.ForeignKey(
-        'wagtailimages.Image',
+        images.get_image_model(),
         null=True,
         blank=True,
         default=None,
