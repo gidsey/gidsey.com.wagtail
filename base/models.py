@@ -8,9 +8,9 @@ from wagtail import images
 
 #  Define the custom Image model
 class GidsImage(AbstractImage):
-    slug = models.CharField(max_length=255, null=True, unique=True)
+    slug = models.CharField(max_length=255, null=True, blank=True)
 
-    admin_form_fields = Image.admin_form_fields + ('slug', )
+    admin_form_fields = Image.admin_form_fields
 
 
 class CustomRendition(AbstractRendition):
