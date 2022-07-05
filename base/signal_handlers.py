@@ -1,12 +1,15 @@
 from django.db.models.signals import pre_save
-from wagtail import images
 from django.utils.text import slugify
+from wagtail import images
+
+from .utils import random_string_generator
 
 
 def add_slug_to_image(instance, **kwargs):
-    # print('add_slug called')
-    # print(f'instance {instance}')
-    instance.slug = slugify(instance.title)
+    try:
+        instance.slug = slugify(instance.title)
+    except Exception:
+        instance.slug = slugify(instance.title) + '_' + random_string_generator(size=4)
 
 
 def register_signal_handlers():
