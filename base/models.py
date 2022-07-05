@@ -1,18 +1,16 @@
 from django.db import models
-from django_extensions.db.fields import AutoSlugField
-from wagtail import images
 from wagtail.admin.edit_handlers import MultiFieldPanel, ObjectList, TabbedInterface, FieldPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.models import Image, AbstractImage, AbstractRendition
+from wagtail import images
 
 
 #  Define the custom Image model
 class GidsImage(AbstractImage):
-    slug = AutoSlugField(populate_from='title')
+    slug = models.CharField(max_length=255, null=True, unique=True)
 
-    admin_form_fields = Image.admin_form_fields + (
-    )
+    admin_form_fields = Image.admin_form_fields + ('slug', )
 
 
 class CustomRendition(AbstractRendition):

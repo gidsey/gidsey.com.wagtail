@@ -140,7 +140,7 @@ USE_L10N = True
 USE_TZ = True
 
 #  Set the custom Image model
-WAGTAILIMAGES_IMAGE_MODEL = 'base.GidsImage'
+# WAGTAILIMAGES_IMAGE_MODEL = 'base.GidsImage'
 
 # AWS
 AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME") or ImproperlyConfigured(

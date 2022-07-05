@@ -17,7 +17,6 @@ class SocialMetaMixin(models.Model):
     class Meta:
         abstract = True
 
-    # noinspection PyUnresolvedReferences
     twitter_card_image = models.ForeignKey(
         images.get_image_model(),
         null=True,
@@ -26,7 +25,7 @@ class SocialMetaMixin(models.Model):
         related_name='+',
         help_text='Suggested size: 1200px x 628px',
     )
-    # noinspection PyUnresolvedReferences
+
     fb_og_image = models.ForeignKey(
         images.get_image_model(),
         null=True,
