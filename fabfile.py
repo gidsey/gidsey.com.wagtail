@@ -8,6 +8,7 @@ from invoke.exceptions import Exit
 from invoke.tasks import task
 
 APP_INSTANCE_PRODUCTION = 'prod-db'
+APP_INSTANCE_STAGING = 'staging-db'
 
 
 def get_db_from_url(env_string):
@@ -15,6 +16,7 @@ def get_db_from_url(env_string):
 
 
 DB_LOCAL = get_db_from_url('DATABASE_URL')
+DB_STAGING = get_db_from_url('DATABASE_URL_STAGING')
 DB_PRODUCTION = get_db_from_url('DATABASE_URL_PRODUCTION')
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
@@ -45,6 +47,15 @@ def production_data_to_local(c):
     pull = pull_database_from_server(c, APP_INSTANCE_PRODUCTION, DB_PRODUCTION, origin, destination)
     if pull:
         restore_data_to_server(c, APP_INSTANCE_PRODUCTION, DB_LOCAL, origin, destination)
+
+
+@task
+def production_data_to_staging(c):
+    origin = 'production'
+    destination = 'staging Postgres container'
+    pull = pull_database_from_server(c, APP_INSTANCE_PRODUCTION, DB_PRODUCTION, origin, destination)
+    if pull:
+        restore_data_to_server(c, APP_INSTANCE_PRODUCTION, DB_STAGING, origin, destination)
 
 
 ########
