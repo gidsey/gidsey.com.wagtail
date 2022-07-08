@@ -17,7 +17,7 @@ pipenv = "*"
 install = "*"
 wagtail-robots = {git = "https://github.com/gidsey/wagtail-robots.git"}
 wagtailmenus = {git = "https://github.com/gidsey/wagtailmenus.git"}
-django-extensions = "==3.1.5"
+pytest-django = "==4.5.2"
 
 [dev-packages]
 

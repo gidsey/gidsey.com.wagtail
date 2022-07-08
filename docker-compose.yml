@@ -14,6 +14,7 @@ services:
     environment:
       - DEBUG=True
       - ENVIRONMENT=local
+      - DJANGO_SETTINGS_MODULE=gidsey.settings.dev
       - DATABASE_URL=${DATABASE_URL}
       - SECRET_KEY=${SECRET_KEY}
       - BASE_URL=http://localhost

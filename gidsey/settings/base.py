@@ -63,7 +63,6 @@ INSTALLED_APPS = [
 
     'storages',
     'robots',
-    'django_extensions',
 ]
 
 MIDDLEWARE = [
