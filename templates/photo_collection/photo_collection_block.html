@@ -3,7 +3,7 @@
 <div class="row collection-container">
     <div class="col-md-6 mb-1">
         {% image self.left_image width-1076 as img %}
-        <a href="{% slugurl 'pd' %}photo/{{ self.left_image.id }}">
+        <a href="{% slugurl 'pd' %}photo/{{ self.left_image.slug }}">
             <img src="{{ img.url }}" loading="lazy"
                  alt="{{ img.alt }}"
                  title="{{ img.alt }}"
@@ -12,7 +12,7 @@
     </div>
     <div class="col-md-6">
         {% image self.right_image width-1076 as img %}
-        <a href="{% slugurl 'pd' %}photo/{{ self.right_image.id }}">
+        <a href="{% slugurl 'pd' %}photo/{{ self.right_image.slug }}">
             <img src="{{ img.url }}" loading="lazy"
                  alt="{{ img.alt }}"
                  title="{{ img.alt }}"

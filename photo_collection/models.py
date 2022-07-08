@@ -63,9 +63,10 @@ class PhotoDetailPage(RoutablePageMixin, Page):
     template = 'photo_collection/photo_detail_page.html'
     max_count = 1
 
-    @route(r'^photo/(\d+)/$', name='single_photo')
-    def single_photo(self, request, photo=None):
-        image = get_object_or_404(images.get_image_model(), id=photo)
+    # @route(r'^photo/(\d+)/$', name='single_photo')
+    @route(r'^photo/([\w-]+)/$', name='single_photo')
+    def single_photo(self, request, slug=None):
+        image = get_object_or_404(images.get_image_model(), slug=slug)
         return self.render(request, context_overrides={
             'image': image,
         })
