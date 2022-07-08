@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                 ('focal_point_height', models.PositiveIntegerField(blank=True, null=True)),
                 ('file_size', models.PositiveIntegerField(editable=False, null=True)),
                 ('file_hash', models.CharField(blank=True, editable=False, max_length=40)),
-                ('slug', django_extensions.db.fields.AutoSlugField(blank=True, editable=False, populate_from='title')),
+                ('slug', models.CharField(max_length=255, null=True, unique=True, editable=False)),
                 ('collection', models.ForeignKey(default=wagtail.core.models.collections.get_root_collection_id, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='wagtailcore.collection', verbose_name='collection')),
                 ('tags', taggit.managers.TaggableManager(blank=True, help_text=None, through='taggit.TaggedItem', to='taggit.Tag', verbose_name='tags')),
                 ('uploaded_by_user', models.ForeignKey(blank=True, editable=False, null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL, verbose_name='uploaded by user')),

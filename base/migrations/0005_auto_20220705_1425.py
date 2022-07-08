@@ -30,7 +30,7 @@ def copy_images_to_custom_table(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('base', '0004_alter_gidsimage_slug'),
+        ('base', '0003_gidsimage_customrendition'),
     ]
 
     operations = [

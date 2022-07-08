@@ -15,7 +15,7 @@ def sql_sequence_reset(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('base', '0008_auto_20220706_1603'),
+        ('base', '0007_alter_gidsimage_slug_alter_socialmedia_favicon_and_more'),
     ]
 
     operations = [
