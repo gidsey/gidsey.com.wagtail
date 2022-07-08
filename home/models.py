@@ -1,4 +1,5 @@
 from django.db import models
+from wagtail import images
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
@@ -14,7 +15,7 @@ class HomePage(SocialMetaMixin, Page):
     intro = RichTextField(blank=True)
     # noinspection PyUnresolvedReferences
     hero = models.ForeignKey(
-        'wagtailimages.Image', null=True, blank=True,
+        images.get_image_model(), null=True, blank=True,
         on_delete=models.SET_NULL, related_name='+'
     )
 

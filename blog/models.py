@@ -6,6 +6,7 @@ from django.shortcuts import render
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from taggit.models import TaggedItemBase
+from wagtail import images
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.fields import RichTextField, StreamField
@@ -36,9 +37,8 @@ class BlogPage(SocialMetaMixin, Page):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
 
-    # noinspection PyUnresolvedReferences
     hero = models.ForeignKey(
-        'wagtailimages.Image', null=True, blank=True,
+        images.get_image_model(), null=True, blank=True,
         on_delete=models.SET_NULL, related_name='+'
     )
     content = StreamField(
@@ -141,7 +141,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
         context['posts'] = posts
         context['category'] = category
         context['location'] = self.url + 'category/' + cat_slug
-        return render(request, 'blog/blog_index_page.html', context)
+        return render(request, self.template, context)
 
     content_panels = Page.content_panels + [
         FieldPanel('intro', classname="full")
@@ -197,7 +197,7 @@ class BlogAuthor(models.Model):
     name = models.CharField(max_length=100)
     website = models.URLField(blank=True, null=True)
     image = models.ForeignKey(
-        'wagtailimages.Image',
+        images.get_image_model(),
         null=True,
         blank=False,
         related_name='+',
@@ -247,7 +247,7 @@ class BlogPageGalleryImage(Orderable):
     page = ParentalKey(BlogPage, on_delete=models.CASCADE, related_name='gallery_images')
     # noinspection PyUnresolvedReferences
     image = models.ForeignKey(
-        'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'
+        images.get_image_model(), on_delete=models.CASCADE, related_name='+'
     )
     caption = models.CharField(blank=True, max_length=250)
 

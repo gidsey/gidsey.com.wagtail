@@ -16,9 +16,8 @@ class PhotoCollection(SocialMetaMixin, Page):
     Photo collection detail page
     """
     intro = models.CharField(max_length=250, null=True, blank=True)
-    # noinspection PyUnresolvedReferences
     hero = models.ForeignKey(
-        'wagtailimages.Image', null=True, blank=True,
+        images.get_image_model(), null=True, blank=True,
         on_delete=models.SET_NULL, related_name='+'
     )
     content = StreamField(
@@ -64,10 +63,10 @@ class PhotoDetailPage(RoutablePageMixin, Page):
     template = 'photo_collection/photo_detail_page.html'
     max_count = 1
 
-    @route(r'^photo/(\d+)/$', name='single_photo')
-    def single_photo(self, request, photo=None):
-        Image = images.get_image_model()
-        image = get_object_or_404(Image, id=photo)
+    # @route(r'^photo/(\d+)/$', name='single_photo')
+    @route(r'^photo/([\w-]+)/$', name='single_photo')
+    def single_photo(self, request, slug=None):
+        image = get_object_or_404(images.get_image_model(), slug=slug)
         return self.render(request, context_overrides={
             'image': image,
         })
