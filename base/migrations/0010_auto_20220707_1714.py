@@ -2,10 +2,10 @@
 
 from django.db import migrations
 from base import wagtail_hooks
+wagtail_hooks.register_signal_handlers()
 
 
 def save_slugs_on_existing_images(apps, schema_editor):
-    wagtail_hooks.register_signal_handlers()
     extended_image_model = apps.get_model('base', 'GidsImage')
     for image in extended_image_model.objects.all():
         image.title = image.title
