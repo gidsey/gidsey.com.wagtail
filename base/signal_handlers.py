@@ -5,7 +5,7 @@ from .utils import unique_slugify
 
 
 def add_slug_to_image(instance, **kwargs):
-    instance.slug = unique_slugify(instance, instance.title)
+    instance.slug = unique_slugify(instance)
 
 
 def register_signal_handlers():
