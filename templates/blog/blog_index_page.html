@@ -61,7 +61,7 @@
                                 <a href="{% pageurl post %}" class="index-link"><h5>{{ post.title|truncatechars:20 }}</h5></a>
                                 {% with post.hero as hero %}
                                     {% if hero %}
-                                        {% image hero fill-800x532 as img %}
+                                        {% image hero width-596 as img %}
                                         <a href="{% pageurl post %}">
                                             <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid"></a>
                                     {% endif %}
