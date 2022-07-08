@@ -9,9 +9,6 @@ def random_string_generator(size=10, chars=string.ascii_lowercase + string.digit
 
 def unique_slugify(instance):
     model = instance.__class__
-    if instance.slug:
-        return instance.slug
-
     origin = instance.title
     unique_slug = slugify(origin)
     while model.objects.filter(slug=unique_slug).exists():
