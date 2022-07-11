@@ -1,30 +1,38 @@
-{% load wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 <div class="row">
     <div class="col-md-5">
         {% image self.left_image width-1980 as img %}
         {% if not self.hide_captions %}
-            <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid">
+            <a href="{% slugurl 'single' %}photo/{{ self.left_image.slug }}">
+                <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid">
+            </a>
             {% if self.left_alt_caption %}
                 <p class="text-muted small">{{ self.left_alt_caption }}</p>
             {% else %}
                 <p class="text-muted small">{{ self.left_image.title }}</p>
             {% endif %}
         {% else %}
-            <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid">
+            <a href="{% slugurl 'single' %}photo/{{ self.left_image.slug }}">
+                <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid">
+            </a>
         {% endif %}
 
     </div>
     <div class="col-md-5">
         {% image self.right_image width-1980 as img %}
         {% if not self.hide_captions %}
-            <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid">
+            <a href="{% slugurl 'single' %}photo/{{ self.right_image.slug }}">
+                <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid">
+            </a>
             {% if self.right_alt_caption %}
                 <p class="text-muted small">{{ self.right_alt_caption }}</p>
             {% else %}
                 <p class="text-muted small">{{ self.right_image.title }}</p>
             {% endif %}
         {% else %}
-            <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid">
+            <a href="{% slugurl 'single' %}photo/{{ self.right_image.slug }}">
+                <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid">
+            </a>
         {% endif %}
     </div>
 </div>

@@ -1,12 +1,16 @@
-{% load wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 <div class="row">
     <div class="col-md-7 image-block-gap">
         {% image self.left_image max-1218x812 as left %}
+            <a href="{% slugurl 'single' %}photo/{{ self.left_image.slug }}">
         <img src="{{ left.url }}" loading="lazy" alt="{{ left.alt }}" class="img-h-100">
+            </a>
     </div>
     <div class="col-md-3">
         {% image self.right_image max-812x1218 as right %}
+            <a href="{% slugurl 'single' %}photo/{{ self.right_image.slug }}">
         <img src="{{ right.url }}" loading="lazy" alt="{{ right.alt }}" class="img-h-100">
+            </a>
     </div>
     <p class="text-muted small">{{ self.caption }}</p>
 </div>

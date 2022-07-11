@@ -53,20 +53,3 @@ class PhotoCollectionIndexPage(SocialMetaMixin, Page):
         collections = PhotoCollection.objects.live().public().order_by('title')
         context['collections'] = collections
         return context
-
-
-class PhotoDetailPage(RoutablePageMixin, Page):
-    """
-    Single photo detail page
-    """
-
-    template = 'photo_collection/photo_detail_page.html'
-    max_count = 1
-
-    # @route(r'^photo/(\d+)/$', name='single_photo')
-    @route(r'^photo/([\w-]+)/$', name='single_photo')
-    def single_photo(self, request, slug=None):
-        image = get_object_or_404(images.get_image_model(), slug=slug)
-        return self.render(request, context_overrides={
-            'image': image,
-        })
