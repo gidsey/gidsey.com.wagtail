@@ -2,7 +2,9 @@ static/css/* linguist-vendored
 static/js/* linguist-vendored
 static/admin/* linguist-vendored
 static/wagtailadmin/* linguist-vendored
+static/wagtailadmin/js/* linguist-vendored
 static/wagtaildocs/* linguist-vendored
+static/wagtaildocs/js/* linguist-vendored
 static/wagtailimages/* linguist-vendored
 static/wagtailmodeladmin/css/* linguist-vendored
 static/wagtaildocs/* linguist-vendored

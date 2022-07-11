@@ -101,11 +101,6 @@ a.tag-on, a.category-on {
     border-radius: 12px;
 }
 
-.img-container {
-    display: block;
-    height: 700px;
-}
-
 .img-responsive {
     display: block;
     width: auto;
@@ -137,12 +132,12 @@ a.tag-on, a.category-on {
 
 .rtn {
     position: relative;
-    top:2px;
+    top: 2px;
 }
 
 .contain {
-    display: block;
-    height: 40%;
+    width: 76%;
+    margin: 0 auto;
 }
 
 .credit {
@@ -175,13 +170,20 @@ a.tag-on, a.category-on {
         margin-right: auto;
         max-width: 90%;
     }
+
 }
 
 /* Medium devices (tablets, less than 992px) */
-/*@media (max-width: 991.98px) { ... }*/
+/*@media (max-width: 991.98px) {*/
+/*}*/
 
 /* Large devices (desktops, less than 1200px) */
-/*@media (max-width: 1199.98px) { ... }*/
+@media (max-width: 1199.98px) {
+    .contain {
+        width: 100%;
+    }
+
+}
 
 /* X-Large devices (large desktops, less than 1400px) */
 /*@media (max-width: 1399.98px) { ... }*/
