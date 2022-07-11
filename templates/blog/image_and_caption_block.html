@@ -1,16 +1,20 @@
-{% load wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 <div class="row">
     <div class="col-md-10">
         {% image self.image width-1980 as img %}
         {% if not self.hide_caption %}
-            <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid">
+            <a href="{% slugurl 'single' %}photo/{{ self.image.slug }}">
+                <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid">
+            </a>
             {% if self.alt_caption %}
                 <p class="text-muted small">{{ self.alt_caption }}</p>
             {% else %}
                 <p class="text-muted small">{{ self.image.title }}</p>
             {% endif %}
         {% else %}
-            <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid mb-2">
+            <a href="{% slugurl 'single' %}photo/{{ self.image.slug }}">
+                <img src="{{ img.url }}" loading="lazy" alt="{{ img.alt }}" class="img-fluid mb-2">
+            </a>
         {% endif %}
     </div>
 </div>
