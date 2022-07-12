@@ -11,7 +11,7 @@ class GidsImage(AbstractImage):
     slug = models.CharField(max_length=255, null=True, blank=True)
     copyright = models.CharField(max_length=100, default='Chris Guy')
 
-    admin_form_fields = Image.admin_form_fields = ('copyright', )
+    admin_form_fields = Image.admin_form_fields + ('copyright', )
 
 
 class CustomRendition(AbstractRendition):
