@@ -15,12 +15,20 @@
                 <div class="col-lg-12">
                     <div class="contain">
                         <div>
-                            {% image image max-1400x934 as rendition %}
+                            {% image image max-1968x1312 as rendition %}
                             <div id="imgContainer">
                                 <img src="{{ rendition.url }}" alt="{{ rendition.alt }}" title="{{ rendition.alt }}"
                                      class="img-responsive">
-                                <div class="credit">Image © <a
-                                        href="{% slugurl 'about' %}">{{ image.copyright }}</a></div>
+
+                                <div class="credit">Image ©
+                                    {% if image.copyright == 'Chris Guy' %}
+                                        <a href="{% slugurl 'about' %}">{{ image.copyright }}</a>
+                                    {% else %}
+                                        {{ image.copyright }}
+                                    {% endif %}
+                                </div>
+
+
                             </div>
                             <div class="mt-3 mb-5 text-center">
                                 <a href="{% slugurl 'collections' %}" class="cta"><span class="rtn">&#8629;</span>
