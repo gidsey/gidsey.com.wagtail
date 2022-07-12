@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "09e316f808e84faaf3472ea22fffb335e3822786e86a12841ab6c2aa1a4f924d"
+            "sha256": "210df59a97232c81a3f2c0e9fa0637bb5cdf723efe1424e4f72ab3865b59fc27"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -58,11 +58,11 @@
         },
         "botocore": {
             "hashes": [
-                "sha256:345616f51ee6c4f3edefa1623cf65a954ba21576371c153dfc2b8ed642870999",
-                "sha256:cc4f025dc7187797b6b7115274399612b3fe8e777150fc9df7e132bd9e90901c"
+                "sha256:524da451350c41e3136353183e7424c95952124163ea8ec03f57f29597bbcb4b",
+                "sha256:583b85f8a799fb89d1a762db041163b5848b08e79cee06b609bcaaeb69ea1fa6"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.27.25"
+            "version": "==1.27.27"
         },
         "certifi": {
             "hashes": [
@@ -462,11 +462,11 @@
         },
         "sentry-sdk": {
             "hashes": [
-                "sha256:b82ad57306d5546713f15d5d70daea0408cf7f998c7566db16e0e6257e51e561",
-                "sha256:ddbd191b6f4e696b7845b4d87389898ae1207981faf114f968a57363aa6be03c"
+                "sha256:54cc2db9d85fcad557b2269f72f82f6f6b3a52eb93ae840a02a6eca4d9a0b707",
+                "sha256:741762816cdd32f647fca94a4515098cd52cb09dfe8c78f7d70eb28d2eaf89c5"
             ],
             "index": "pypi",
-            "version": "==1.6.0"
+            "version": "==1.7.0"
         },
         "setuptools": {
             "hashes": [
@@ -565,8 +565,8 @@
             "ref": "34c31fbe6ae809f4404079a267563d1b5dab3e37"
         },
         "wagtailmenus": {
-            "git": "https://github.com/gidsey/wagtailmenus.git",
-            "ref": "f1975e501c22258ec9e4aa78a53511946eeeac64"
+            "git": "https://github.com/jazzband/wagtailmenus.git",
+            "ref": "100d90c27e0b2bcd828a4667e86deae49c4842d0"
         },
         "webencodings": {
             "hashes": [

@@ -16,8 +16,8 @@ django-debug-toolbar = "*"
 pipenv = "*"
 install = "*"
 wagtail-robots = {git = "https://github.com/gidsey/wagtail-robots.git"}
-wagtailmenus = {git = "https://github.com/gidsey/wagtailmenus.git"}
 pytest-django = "==4.5.2"
+wagtailmenus = {git = "https://github.com/jazzband/wagtailmenus.git"}
 
 [dev-packages]
 
