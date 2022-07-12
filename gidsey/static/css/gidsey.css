@@ -138,12 +138,28 @@ a.tag-on, a.category-on {
 .contain {
     width: 76%;
     margin: 0 auto;
+    text-align: center;
 }
 
 .credit {
+    display: inline-block;
+    position:inherit;
+    float: right;
     text-transform: uppercase;
     font-size: 50%;
     color: #333333;
+    padding: 0 2px;
+    background-color: #99D0F5;
+}
+
+
+div#imgContainer {
+    min-width: 20px;
+    min-height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display:inline-block;
 }
 
 /* X-Small devices (portrait phones, less than 576px) */
