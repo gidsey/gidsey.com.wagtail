@@ -2,7 +2,6 @@ from django.db import models
 from wagtail import images
 from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel
 from wagtail.core.models import Page
-from wagtail.images.edit_handlers import ImageChooserPanel
 
 
 class SocialMetaMixin(models.Model):
@@ -45,8 +44,8 @@ class SocialMetaMixin(models.Model):
 
     promote_panels = Page.promote_panels + [
         MultiFieldPanel([
-            ImageChooserPanel('twitter_card_image'),
-            ImageChooserPanel('fb_og_image'),
+            FieldPanel('twitter_card_image'),
+            FieldPanel('fb_og_image'),
             FieldPanel('social_img_alt_text'),
         ], heading='Social media Meta')
     ]

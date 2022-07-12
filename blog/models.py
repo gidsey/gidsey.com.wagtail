@@ -7,11 +7,10 @@ from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from taggit.models import TaggedItemBase
 from wagtail import images
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page, Orderable
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
@@ -51,7 +50,8 @@ class BlogPage(SocialMetaMixin, Page):
             ('one_third_two_thirds', OneThirdTwoThirds()),
         ],
         null=True,
-        blank=True
+        blank=True,
+        use_json_field=True,
     )
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
@@ -74,8 +74,8 @@ class BlogPage(SocialMetaMixin, Page):
                 FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
             ], heading="Blog information"),
         FieldPanel('intro'),
-        StreamFieldPanel('content'),
-        ImageChooserPanel('hero'),
+        FieldPanel('content'),
+        FieldPanel('hero'),
         MultiFieldPanel(
             [
                 InlinePanel('gallery_info', label='Gallery information', min_num=None, max_num=1),
@@ -208,7 +208,7 @@ class BlogAuthor(models.Model):
         MultiFieldPanel(
             [
                 FieldPanel('name'),
-                ImageChooserPanel('image'),
+                FieldPanel('image'),
             ],
             heading='Name and Image',
         ),
@@ -252,7 +252,7 @@ class BlogPageGalleryImage(Orderable):
     caption = models.CharField(blank=True, max_length=250)
 
     panels = [
-        ImageChooserPanel('image'),
+        FieldPanel('image'),
         FieldPanel('caption'),
     ]
 

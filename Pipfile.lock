@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "09e316f808e84faaf3472ea22fffb335e3822786e86a12841ab6c2aa1a4f924d"
+            "sha256": "a5ee81148e059b139096e16ffcc91e9aaf8b083e53645a8ddf70c10d7656aa9f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -58,11 +58,11 @@
         },
         "botocore": {
             "hashes": [
-                "sha256:345616f51ee6c4f3edefa1623cf65a954ba21576371c153dfc2b8ed642870999",
-                "sha256:cc4f025dc7187797b6b7115274399612b3fe8e777150fc9df7e132bd9e90901c"
+                "sha256:524da451350c41e3136353183e7424c95952124163ea8ec03f57f29597bbcb4b",
+                "sha256:583b85f8a799fb89d1a762db041163b5848b08e79cee06b609bcaaeb69ea1fa6"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.27.25"
+            "version": "==1.27.27"
         },
         "certifi": {
             "hashes": [
@@ -129,11 +129,19 @@
         },
         "django-modelcluster": {
             "hashes": [
-                "sha256:0347cdcacb19a1078ee56cc3e6d5413ba27b8a5900710c53bb92b5d8ff3819cd",
-                "sha256:f9f4250e706ee5e57503a30fbf37058b73e9fdc3190d75031338b81913cc9b4e"
+                "sha256:4ae46f86c43702020f24f212222eef0a2588df937bbb523a5447da247b5fb130",
+                "sha256:cdcffef5baf5d3759ee04c5b60ffaf1a0c95fc0f265e762f3ddfadde3394e5db"
             ],
-            "markers": "python_version >= '3.5'",
-            "version": "==5.3"
+            "markers": "python_version >= '3.7'",
+            "version": "==6.0"
+        },
+        "django-permissionedforms": {
+            "hashes": [
+                "sha256:4340bb20c4477fffb13b4cc5cccf9f1b1010b64f79956c291c72d2ad2ed243f8",
+                "sha256:d341a961a27cc77fde8cc42141c6ab55cc1f0cb886963cc2d6967b9674fa47d6"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==0.1"
         },
         "django-storages": {
             "hashes": [
@@ -462,11 +470,11 @@
         },
         "sentry-sdk": {
             "hashes": [
-                "sha256:b82ad57306d5546713f15d5d70daea0408cf7f998c7566db16e0e6257e51e561",
-                "sha256:ddbd191b6f4e696b7845b4d87389898ae1207981faf114f968a57363aa6be03c"
+                "sha256:54cc2db9d85fcad557b2269f72f82f6f6b3a52eb93ae840a02a6eca4d9a0b707",
+                "sha256:741762816cdd32f647fca94a4515098cd52cb09dfe8c78f7d70eb28d2eaf89c5"
             ],
             "index": "pypi",
-            "version": "==1.6.0"
+            "version": "==1.7.0"
         },
         "setuptools": {
             "hashes": [
@@ -489,7 +497,7 @@
                 "sha256:3b2503d3c7084a42b1ebd08116e5f81aadfaea95863628c80a3b774a11b7c759",
                 "sha256:fc53893b3da2c33de295667a0e19f078c14bf86544af307354de5fcf12a3f30d"
             ],
-            "markers": "python_version >= '3'",
+            "markers": "python_version >= '3.0'",
             "version": "==2.3.2.post1"
         },
         "sqlparse": {
@@ -554,19 +562,19 @@
         },
         "wagtail": {
             "hashes": [
-                "sha256:d48ea4d45d09f8482a1b4632e0dca1aad99489cc26386f2af32b306e014832ba",
-                "sha256:ee23dc1ba39d4785d20acc95274b29dbcf83f5d9fd670555f541f2a88eec9daa"
+                "sha256:107d7a1ac9a4fde0fa2e454cc84f548dc41581cc627881abf4bbac3d5a30244c",
+                "sha256:917393fcea8644734beb323d607e02e4316370982ba0b4ea689a576567247bc8"
             ],
             "index": "pypi",
-            "version": "==2.16.2"
+            "version": "==3.0.1"
         },
         "wagtail-robots": {
             "git": "https://github.com/gidsey/wagtail-robots.git",
             "ref": "34c31fbe6ae809f4404079a267563d1b5dab3e37"
         },
         "wagtailmenus": {
-            "git": "https://github.com/gidsey/wagtailmenus.git",
-            "ref": "f1975e501c22258ec9e4aa78a53511946eeeac64"
+            "git": "https://github.com/jazzband/wagtailmenus.git",
+            "ref": "100d90c27e0b2bcd828a4667e86deae49c4842d0"
         },
         "webencodings": {
             "hashes": [

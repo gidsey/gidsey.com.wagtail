@@ -1,9 +1,8 @@
 from django.db import models
+from wagtail import images
 from wagtail.admin.edit_handlers import MultiFieldPanel, ObjectList, TabbedInterface, FieldPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.models import Image, AbstractImage, AbstractRendition
-from wagtail import images
 
 
 #  Define the custom Image model
@@ -11,7 +10,7 @@ class GidsImage(AbstractImage):
     slug = models.CharField(max_length=255, null=True, blank=True)
     copyright = models.CharField(max_length=100, default='Chris Guy')
 
-    admin_form_fields = Image.admin_form_fields + ('copyright', )
+    admin_form_fields = Image.admin_form_fields + ('copyright',)
 
 
 class CustomRendition(AbstractRendition):
@@ -59,8 +58,8 @@ class SocialMedia(BaseSetting):
     content_panels = [
         MultiFieldPanel(
             [
-                ImageChooserPanel('favicon'),
-                ImageChooserPanel('site_icon'),
+                FieldPanel('favicon'),
+                FieldPanel('site_icon'),
             ],
             heading="Images",
         ),
