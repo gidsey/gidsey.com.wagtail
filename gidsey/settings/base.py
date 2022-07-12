@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'wagtail.contrib.modeladmin',
     'wagtail.contrib.styleguide',
 
-    'wagtailmenus',
     'modelcluster',
     'taggit',
 
@@ -62,6 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
 
     'storages',
+    'wagtailmenus',
     'robots',
 ]
 
@@ -192,6 +192,8 @@ WAGTAILSEARCH_BACKENDS = {
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = os.getenv('BASE_URL', ImproperlyConfigured('BASE_URL not set'))
+
+WAGTAILADMIN_BASE_URL = os.getenv('WAGTAILADMIN_BASE_URL', ImproperlyConfigured('WAGTAILADMIN_BASE_URL not set'))
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "210df59a97232c81a3f2c0e9fa0637bb5cdf723efe1424e4f72ab3865b59fc27"
+            "sha256": "a5ee81148e059b139096e16ffcc91e9aaf8b083e53645a8ddf70c10d7656aa9f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -129,11 +129,19 @@
         },
         "django-modelcluster": {
             "hashes": [
-                "sha256:0347cdcacb19a1078ee56cc3e6d5413ba27b8a5900710c53bb92b5d8ff3819cd",
-                "sha256:f9f4250e706ee5e57503a30fbf37058b73e9fdc3190d75031338b81913cc9b4e"
+                "sha256:4ae46f86c43702020f24f212222eef0a2588df937bbb523a5447da247b5fb130",
+                "sha256:cdcffef5baf5d3759ee04c5b60ffaf1a0c95fc0f265e762f3ddfadde3394e5db"
             ],
-            "markers": "python_version >= '3.5'",
-            "version": "==5.3"
+            "markers": "python_version >= '3.7'",
+            "version": "==6.0"
+        },
+        "django-permissionedforms": {
+            "hashes": [
+                "sha256:4340bb20c4477fffb13b4cc5cccf9f1b1010b64f79956c291c72d2ad2ed243f8",
+                "sha256:d341a961a27cc77fde8cc42141c6ab55cc1f0cb886963cc2d6967b9674fa47d6"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==0.1"
         },
         "django-storages": {
             "hashes": [
@@ -489,7 +497,7 @@
                 "sha256:3b2503d3c7084a42b1ebd08116e5f81aadfaea95863628c80a3b774a11b7c759",
                 "sha256:fc53893b3da2c33de295667a0e19f078c14bf86544af307354de5fcf12a3f30d"
             ],
-            "markers": "python_version >= '3'",
+            "markers": "python_version >= '3.0'",
             "version": "==2.3.2.post1"
         },
         "sqlparse": {
@@ -554,11 +562,11 @@
         },
         "wagtail": {
             "hashes": [
-                "sha256:d48ea4d45d09f8482a1b4632e0dca1aad99489cc26386f2af32b306e014832ba",
-                "sha256:ee23dc1ba39d4785d20acc95274b29dbcf83f5d9fd670555f541f2a88eec9daa"
+                "sha256:107d7a1ac9a4fde0fa2e454cc84f548dc41581cc627881abf4bbac3d5a30244c",
+                "sha256:917393fcea8644734beb323d607e02e4316370982ba0b4ea689a576567247bc8"
             ],
             "index": "pypi",
-            "version": "==2.16.2"
+            "version": "==3.0.1"
         },
         "wagtail-robots": {
             "git": "https://github.com/gidsey/wagtail-robots.git",
