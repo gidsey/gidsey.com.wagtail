@@ -136,7 +136,6 @@ a.tag-on, a.category-on {
 }
 
 .contain {
-    width: 66%;
     margin: 0 auto;
     text-align: center;
 }
@@ -154,12 +153,9 @@ a.tag-on, a.category-on {
 
 
 div#imgContainer {
-    min-width: 20px;
-    min-height: 20px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    display:inline-block;
 }
 
 /* X-Small devices (portrait phones, less than 576px) */
