@@ -19,8 +19,8 @@
                          {% else %}style="max-width: 800px"{% endif %}>
                         <div id="imgContainer">
                             <img src="{{ rendition.url }}" alt="{{ rendition.alt }}" title="{{ rendition.alt }}"
-                                 class="img-responsive" {% if image.width > image.height %} width="984"
-                                 {% else %}width="656" {% endif %}>
+                                 class="img-responsive" {% if image.width > image.height %} width="800"
+                                 {% else %}width="533" {% endif %}>
 
                             <div class="credit">Image ©
                                 {% if image.copyright == 'Chris Guy' %}

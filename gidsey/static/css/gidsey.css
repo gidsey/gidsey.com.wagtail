@@ -158,7 +158,7 @@ div#imgContainer {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    display:inline-block;
+    /*display:inline-block;*/
 }
 
 /* X-Small devices (portrait phones, less than 576px) */
