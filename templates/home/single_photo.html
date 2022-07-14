@@ -5,8 +5,8 @@
 {% block fb_title %}{{ block.super }} {{ image.title }}{% endblock %}
 {% block twr_title %}{{ block.super }} {{ image.title }}{% endblock %}
 
-{% block fb_img_url %} {{ image|social_url }}{% endblock %}
-{% block twr_img_url %} {{ image|social_url }}{% endblock %}
+{% block fb_img_url %}{{ image|social_url }}{% endblock %}
+{% block twr_img_url %}{{ image|social_url }}{% endblock %}
 {% block twr_img_alt %}{{ image.title }}{% endblock %}
 
 {% block meta_desc %}{{ image.title }}. Photography by {{ image.copyright }}{% endblock %}
