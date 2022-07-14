@@ -1,6 +1,17 @@
 {% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags template_extras %}
 
-{% load wagtailcore_tags wagtailimages_tags %}
+{% block title %}{{ block.super }}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}{% endblock %}
+{% block fb_title %}{{ block.super }}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}{% endblock %}
+{% block twr_title %}{{ block.super }}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}{% endblock %}
+
+{% block fb_img_url %}{{ page.fb_og_image|social_url }}{% endblock %}
+{% block twr_img_url %}{{ page.twitter_card_image|social_url }}{% endblock %}
+{% block twr_img_alt %}{{ page.social_img_alt_text }}{% endblock %}
+
+{% block meta_desc %}{{ page.search_description }}{% endblock %}
+{% block og_desc %}{{ page.search_description }}{% endblock %}
+{% block twr_desc %}{{ page.search_description }}{% endblock %}
 
 {% block body_class %}template-homepage{% endblock %}
 

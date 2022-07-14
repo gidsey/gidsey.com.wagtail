@@ -1,9 +1,22 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags wagtailcore_tags %}
+{% load wagtailimages_tags wagtailcore_tags template_extras%}
+
+{% block title %}{{ block.super }} {{ image.title }}{% endblock %}
+{% block fb_title %}{{ block.super }} {{ image.title }}{% endblock %}
+{% block twr_title %}{{ block.super }} {{ image.title }}{% endblock %}
+
+{% block fb_img_url %} {{ image|social_url }}{% endblock %}
+{% block twr_img_url %} {{ image|social_url }}{% endblock %}
+{% block twr_img_alt %}{{ image.title }}{% endblock %}
+
+{% block meta_desc %}{{ image.title }}. Photography by {{ image.copyright }}{% endblock %}
+{% block og_desc %}{{ image.title }}. Photography by {{ image.copyright }}{% endblock %}
+{% block twr_desc %}{{ image.title }}. Photography by {{ image.copyright }}{% endblock %}
 
 
-{% block title %}{{ block.super }} - {{ image }}{% endblock title %}
-
+{{ settings.base.SocialMedia.site_name }} |
+        {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}
+        {% endif %}
 {% block content %}
     <main class="flex-shrink-0">
         <div class="container">
@@ -13,8 +26,7 @@
                 <div class="col-lg-12 "><h3 class="mt-3 mb-3 text-center">{{ image|upper }}</h3></div>
 
                 <div class="col-lg-12">
-                    {% image image max-1600x1066 as rendition %}
-
+                {% image image max-1600x1066 as rendition %}
                     <div class="contain" {% if image.height > image.width %}style="max-width: 400px"
                          {% else %}style="max-width: 800px"{% endif %}>
                         <div id="imgContainer">
@@ -44,3 +56,5 @@
         </div>
     </main>
 {% endblock %}
+
+
