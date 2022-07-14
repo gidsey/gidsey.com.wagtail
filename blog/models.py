@@ -18,7 +18,7 @@ from wagtail.snippets.models import register_snippet
 from base.blocks import (TitleAndTextBlock, SectionHeadBlock, ImageBlock, TwoImageBlock,
                          TwoThirdsOneThird, OneThirdTwoThirds)
 from base.mixins import SocialMetaMixin
-from .utils import paginate
+from .utils import paginate, get_tags
 
 
 class BlogPageTag(TaggedItemBase):
@@ -102,6 +102,12 @@ class BlogIndexPage(RoutablePageMixin, Page):
 
     intro = RichTextField(blank=True)
 
+    social_image = models.ForeignKey(
+        images.get_image_model(), null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+',
+        help_text='Add an image for social media meta data. Suggested size 1200 x 630px'
+    )
+
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
 
@@ -109,11 +115,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
         all_tags = [(tag.lower(), slug) for tag, slug in all_posts.values_list('tags__name', 'tags__slug')]
         all_tags = sorted(list(set(all_tags)))
 
-        if request.GET.get('tag', None):
-            tag = request.GET.get('tag')
-            context['selected_tag'] = tag
-            all_posts = all_posts.filter(tags__slug__in=[tag])
-
+        context, all_posts = get_tags(request, context, all_posts)
         posts = paginate(request, all_posts, 12)
         context['posts'] = posts
         context["categories"] = BlogCategory.objects.all()
@@ -132,11 +134,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
 
         all_posts = BlogPage.objects.live().public().order_by('-date').filter(categories__in=[category])
 
-        if request.GET.get('tag', None):
-            tag = request.GET.get('tag')
-            context['selected_tag'] = tag
-            all_posts = all_posts.filter(tags__slug__in=[tag])
-
+        context, all_posts = get_tags(request, context, all_posts)
         posts = paginate(request, all_posts, 12)
         context['posts'] = posts
         context['category'] = category
@@ -144,7 +142,8 @@ class BlogIndexPage(RoutablePageMixin, Page):
         return render(request, self.template, context)
 
     content_panels = Page.content_panels + [
-        FieldPanel('intro', classname="full")
+        FieldPanel('intro', classname="full"),
+        FieldPanel('social_image'),
     ]
 
 

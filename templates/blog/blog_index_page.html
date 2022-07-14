@@ -5,9 +5,9 @@
 {% block fb_title %}{{ block.super }}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}{% endblock %}
 {% block twr_title %}{{ block.super }}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}{% endblock %}
 
-{#{% block fb_img_url %}{{ page.fb_og_image|social_url }}{% endblock %}#}
-{#{% block twr_img_url %}{{ page.twitter_card_image|social_url }}{% endblock %}#}
-{#{% block twr_img_alt %}{{ page.social_img_alt_text }}{% endblock %}#}
+{% block fb_img_url %}{{ page.social_image|social_url }}{% endblock %}
+{% block twr_img_url %}{{ page.social_image|social_url }}{% endblock %}
+{% block twr_img_alt %}{{ page.social_image.title }}{% endblock %}
 
 {% block meta_desc %}{{ page.intro|striptags }}{% endblock %}
 {% block og_desc %}{{ page.intro|striptags }}{% endblock %}

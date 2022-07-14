@@ -14,3 +14,11 @@ def paginate(request, queryset, num_items):
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
     return posts
+
+
+def get_tags(request, context, all_posts):
+    if request.GET.get('tag', None):
+        tag = request.GET.get('tag')
+        context['selected_tag'] = tag
+        all_posts = all_posts.filter(tags__slug__in=[tag])
+    return context, all_posts
