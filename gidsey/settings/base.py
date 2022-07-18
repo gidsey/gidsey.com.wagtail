@@ -200,17 +200,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # WAGTAIL MENUS
 WAGTAILMENUS_ACTIVE_CLASS = 'active'
 
-# Sentry
-sentry_sdk.init(
-    dsn="https://2a95237b7cfa43eeb34527e15f7dc8f2@o458905.ingest.sentry.io/6070574",
-    integrations=[DjangoIntegration()],
-
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    # We recommend adjusting this value in production.
-    traces_sample_rate=1.0,
-
-    # If you wish to associate users to errors (assuming you are using
-    # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True
-)

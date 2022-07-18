@@ -22,6 +22,22 @@ MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/'
 # DEFAULT_FILE_STORAGE = 'gidsey.storage_backends.ProductionMediaStorage'
 
 
+# Sentry
+sentry_sdk.init(
+    dsn="https://2a95237b7cfa43eeb34527e15f7dc8f2@o458905.ingest.sentry.io/6070574",
+    integrations=[DjangoIntegration()],
+    environment='production',
+
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0,
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
+
 # Production security settings
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
