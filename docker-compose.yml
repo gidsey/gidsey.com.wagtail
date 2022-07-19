@@ -13,7 +13,7 @@ services:
      - "80:80"
     environment:
       - DEBUG=True
-      - ENVIRONMENT=local
+      - ENVIRONMENT=${ENVIRONMENT}
       - DJANGO_SETTINGS_MODULE=gidsey.settings.dev
       - DATABASE_URL=${DATABASE_URL}
       - SECRET_KEY=${SECRET_KEY}
