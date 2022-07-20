@@ -57,4 +57,4 @@ services:
     profiles: ["devtools"]
 
 volumes:
-  postgres_data:
+  postgres_data: {}
