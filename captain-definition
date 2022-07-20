@@ -10,16 +10,7 @@
     "ENV PYTHONIOENCODING utf_8",
     "RUN apt-get update",
     "RUN apt-get -y install nano",
-    "RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
-    build-essential \
-    libpq-dev \
-    libmariadbclient-dev \
-    libjpeg62-turbo-dev \
-    zlib1g-dev \
-    libwebp-dev \
-    python-dev \
-    git \
-    && rm -rf /var/lib/apt/lists/*",
+    "RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends build-essential libpq-dev libmariadbclient-dev libjpeg62-turbo-dev zlib1g-dev libwebp-dev python-dev git && rm -rf /var/lib/apt/lists/*",
     "COPY . /usr/src/app/",
     "RUN pip install --upgrade pip",
     "RUN pip install pipenv && pipenv install --system",
