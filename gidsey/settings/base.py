@@ -199,4 +199,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # WAGTAIL MENUS
 WAGTAILMENUS_ACTIVE_CLASS = 'active'
-

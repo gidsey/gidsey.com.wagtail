@@ -4,12 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django-environ = "~=0.8.1"
+django-environ = "==0.9.0"
 whitenoise = "~=5.3.0"
 gunicorn = "~=20.1.0"
 django-storages = "==1.12.3"
 boto3 = "==1.24.31"
-psycopg2-binary = "==2.9.2"
 sentry-sdk = "*"
 django-debug-toolbar = "*"
 pipenv = "*"
@@ -18,6 +17,7 @@ wagtail-robots = {git = "https://github.com/gidsey/wagtail-robots.git"}
 pytest-django = "==4.5.2"
 wagtailmenus = {git = "https://github.com/jazzband/wagtailmenus.git"}
 wagtail = "==3.0.1"
+psycopg2 = "==2.9.3"
 
 [dev-packages]
 
