@@ -1,7 +1,9 @@
 import os
 
 import environ
+import sentry_sdk
 from django.core.exceptions import ImproperlyConfigured
+from sentry_sdk.integrations.django import DjangoIntegration
 
 ENV_PATH = '/'
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'production')
